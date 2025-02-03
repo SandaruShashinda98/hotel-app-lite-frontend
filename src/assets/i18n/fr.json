@@ -1,0 +1,67 @@
+{
+  "common": {
+    "calender": "Calendrier",
+    "users": "Utilisateurs",
+    "bookings": "Réservations",
+    "logout": "Déconnexion",
+    "edit-booking": "Modifier la Réservation",
+    "create-booking": "Nouvelle Réservation",
+    "edit-user": "Modifier l'Utilisateur",
+    "create-user": "Nouvel Utilisateur",
+    "update": "Mettre à jour",
+    "filter": "Filtrer",
+    "search": "Rechercher",
+    "confirmDelete": "Êtes-vous sûr de vouloir supprimer cet élément ?"
+  },
+  "user": {
+    "title": "Réservations",
+    "filter": "Filtrer",
+    "search": "Rechercher un utilisateur",
+    "add": "Ajouter un Utilisateur",
+    "form": {
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "username": "Nom d'utilisateur",
+      "email": "Email",
+      "status": "Statut",
+      "mobileNo": "Numéro mobile",
+      "role": "Rôle",
+      "actions": "Actions"
+    },
+    "action": {
+      "cancel": "Annuler",
+      "booking": "Réservation"
+    },
+    "list": {
+      "customerName": "Nom du Client",
+      "date": "Date",
+      "duration": "Durée",
+      "status": "Statut"
+    }
+  },
+  "booking": {
+    "title": "Réservations",
+    "filter": "Filtrer",
+    "search": "Rechercher des réservations",
+    "add": "Ajouter une Réservation",
+    "form": {
+      "customerName": "Nom du Client",
+      "clockIn": "Heure d'Arrivée",
+      "clockOut": "Heure de Départ",
+      "status": "Statut",
+      "mobileNumber": "Numéro mobile",
+      "notes": "Notes",
+      "actions": "Actions"
+    },
+    "action": {
+      "cancel": "Annuler",
+      "booking": "Réservation"
+    },
+    "list": {
+      "customerName": "Nom du Client",
+      "date": "Date",
+      "duration": "Durée",
+      "status": "Statut"
+    }
+  }
+}

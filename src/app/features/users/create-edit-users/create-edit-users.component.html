@@ -1,0 +1,110 @@
+<div class="flex justify-between pt-2 mb-2 px-4 bg-blue-300">
+  <button mat-fab color="primary" (click)="onBackClick()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    class="mt-2"
+    (click)="onCalenderClick()"
+  >
+    <mat-icon>calendar_today</mat-icon>
+    {{ "common.calender" | translate }}
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    class="mt-2"
+    (click)="onUserClick()"
+  >
+    <mat-icon>supervised_user_circle</mat-icon>
+    {{ "common.users" | translate }}
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    class="mt-2"
+    (click)="onBookingClick()"
+  >
+    <mat-icon>hotel</mat-icon> {{ "common.bookings" | translate }}
+  </button>
+  <button
+    mat-raised-button
+    color="accent"
+    class="mt-2"
+    (click)="onLogoutClick()"
+  >
+    <mat-icon>exit_to_app</mat-icon> {{ "common.logout" | translate }}
+  </button>
+
+  <app-language-selector />
+</div>
+
+<div class="p-6 max-w-2xl mx-auto">
+  <h1 class="text-2xl font-bold mb-6">
+    @if(isEditMode){
+    {{ "common.edit-user" | translate }}
+    }@else {
+    {{ "common.create-user" | translate }}
+    }
+  </h1>
+  <h1 class="text-2xl font-bold mb-6">
+    {{ isEditMode ? "Edit" : "New" }} User
+  </h1>
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="space-y-4">
+    <mat-form-field class="w-full">
+      <mat-label>{{ "user.form.firstName" | translate }} </mat-label>
+      <input matInput formControlName="first_name" required />
+      @if (userForm.get('first_name')?.hasError('required')) {
+      <mat-error>First name is required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>{{ "user.form.lastName" | translate }}</mat-label>
+      <input matInput formControlName="last_name" required />
+      @if (userForm.get('last_name')?.hasError('required')) {
+      <mat-error>Last name is required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>{{ "user.form.username" | translate }}</mat-label>
+      <input matInput formControlName="username" required />
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>{{ "user.form.email" | translate }}</mat-label>
+      <input matInput formControlName="email" required />
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>{{ "user.form.mobileNo" | translate }}</mat-label>
+      <input matInput formControlName="mobileNo" required />
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>{{ "user.form.role" | translate }}</mat-label>
+      <mat-select formControlName="role" required>
+        <mat-option value="ADMIN">ADMIN</mat-option>
+        <mat-option value="WORKER">WORKER</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="flex justify-end space-x-4">
+      <button mat-button type="button" (click)="goBack()">
+        {{ "user.action.cancel" | translate }}
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="userForm.invalid"
+        class="bg-blue-600"
+      >
+        {{ isEditMode ? "Update" : "Create" }} User
+      </button>
+    </div>
+  </form>
+</div>

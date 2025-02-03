@@ -1,0 +1,12 @@
+<mat-form-field appearance="outline" class="w-52">
+  <mat-select
+    [value]="translationService.currentLang()"
+    (selectionChange)="onLanguageChange($event.value)"
+  >
+    @for (lang of translationService.supportedLanguages; track lang.code) {
+    <mat-option [value]="lang.code">
+      {{ lang.flag }} {{ lang.name }}
+    </mat-option>
+    }
+  </mat-select>
+</mat-form-field>

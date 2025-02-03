@@ -1,0 +1,47 @@
+
+<div class="flex justify-center p-20">
+  <!-- Right Section - Login Form -->
+  <div class="w-1/2 bg-gray-100 p-12 flex items-center justify-center">
+    <div class="w-full max-w-md space-y-6">
+      <div class="flex items-center gap-2 mb-8">
+        <div class="bg-red-500 w-8 h-8 rounded-lg"></div>
+        <span class="font-semibold">Booking App</span>
+      </div>
+
+      <div class="mb-8">
+        <h2 class="text-3xl font-bold mb-2">Hello Again !</h2>
+        <p class="text-gray-400">
+          Enter your credential to access your account.
+        </p>
+      </div>
+
+      <form [formGroup]="authForm" (ngSubmit)="onSubmit()" class="space-y-4">
+        <mat-form-field class="w-full">
+          <mat-label>E-Mail</mat-label>
+          <input matInput formControlName="email" type="email" />
+          <mat-error>E-mail is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            [type]="showPassword ? 'text' : 'password'"
+            placeholder="Password"
+          />
+          <mat-icon matSuffix (click)="showPassword = !showPassword">
+            {{ showPassword ? "visibility_off" : "visibility" }}
+          </mat-icon>
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          class="w-full bg-red-500 p-3 rounded-lg font-semibold"
+        >
+          Sign in
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

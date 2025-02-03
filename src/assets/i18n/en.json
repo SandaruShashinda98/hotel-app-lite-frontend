@@ -1,0 +1,69 @@
+{
+  "common": {
+    "calender": "Calender",
+    "users": "Users",
+    "bookings": "Bookings",
+    "logout": "Logout",
+    "edit-booking": "Edit Booking",
+    "create-booking": "New Booking",
+    "edit-user": "Edit User",
+    "create-user": "New User",
+
+    "update": "Update",
+    "filter": "Filter",
+    "search": "Search",
+    "confirmDelete": "Are you sure you want to delete this item?"
+  },
+  "user": {
+    "title": "Bookings",
+    "filter": "Filter",
+    "search": "Search user",
+    "filter-by": "Filter By Booking sites",
+    "add": "Add User",
+    "form": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "username": "Username",
+      "email": "Email",
+      "status": "Status",
+      "mobileNo": "Mobile number",
+      "role": "Role",
+      "actions": "Actions"
+    },
+    "action": {
+      "cancel": "Cancel",
+      "booking": "Booking"
+    },
+    "list": {
+      "customerName": "Customer Name",
+      "date": "Date",
+      "duration": "Duration",
+      "status": "Status"
+    }
+  },
+  "booking": {
+    "title": "Bookings",
+    "filter": "Filter",
+    "search": "Search bookings",
+    "add": "Add Booking",
+    "form": {
+      "customerName": "Customer Name",
+      "clockIn": " Clock In",
+      "clockOut": " Clock Out",
+      "status": "Status",
+      "mobileNumber": "Mobile number",
+      "notes": "Notes",
+      "actions": "Actions"
+    },
+    "action": {
+      "cancel": "Cancel",
+      "booking": "Booking"
+    },
+    "list": {
+      "customerName": "Customer Name",
+      "date": "Date",
+      "duration": "Duration",
+      "status": "Status"
+    }
+  }
+}

@@ -1,0 +1,140 @@
+<div class="flex justify-between pt-2 mb-2 px-4 bg-blue-300">
+  <button mat-fab color="primary" (click)="onBackClick()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    class="mt-2"
+    (click)="onCalenderClick()"
+  >
+    <mat-icon>calendar_today</mat-icon>
+    {{ "common.calender" | translate }}
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    class="mt-2"
+    (click)="onUserClick()"
+  >
+    <mat-icon>supervised_user_circle</mat-icon>
+    {{ "common.users" | translate }}
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    class="mt-2"
+    (click)="onBookingClick()"
+  >
+    <mat-icon>hotel</mat-icon> {{ "common.bookings" | translate }}
+  </button>
+  <button
+    mat-raised-button
+    color="accent"
+    class="mt-2"
+    (click)="onLogoutClick()"
+  >
+    <mat-icon>exit_to_app</mat-icon> {{ "common.logout" | translate }}
+  </button>
+
+  <app-language-selector />
+</div>
+
+<div class="px-6">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold">{{ "user.title" | translate }}</h1>
+  </div>
+
+  <div class="flex justify-between items-center mb-6">
+    <mat-form-field class="w-[30%]">
+      <mat-label>{{ "user.filter" | translate }}</mat-label>
+      <input
+        matInput
+        [formControl]="filterControl"
+        placeholder='"user.search" | translate'
+      />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      [routerLink]="['new']"
+      class="bg-blue-600"
+    >
+      {{ "user.add" | translate }}
+    </button>
+  </div>
+
+  @if(loading()){
+  <div class="flex justify-center items-center">
+    <mat-spinner></mat-spinner>
+  </div>
+  } @if(!loading()){
+  <table mat-table [dataSource]="users()" class="w-full" matSort>
+    <ng-container matColumnDef="first_name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "user.form.firstName" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let user">{{ user.first_name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="last_name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "user.form.lastName" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let user">{{ user.last_name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "user.form.username" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let user">{{ user.username }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "user.form.role" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let user">
+        <span [class]="getRoleClass(user.role)">
+          {{ user.role }}
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ "user.form.email" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ "user.form.actions" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let user">
+        <button mat-icon-button [routerLink]="[user._id, 'edit']">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteUser(user._id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  }
+
+  <mat-paginator
+    [length]="totalItems()"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    [pageIndex]="(route.snapshot.queryParams['start'] || 1) - 1"
+    (page)="onPageChange($event)"
+    class="mt-4"
+  >
+  </mat-paginator>
+</div>

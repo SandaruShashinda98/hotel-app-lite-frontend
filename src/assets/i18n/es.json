@@ -1,0 +1,67 @@
+{
+  "common": {
+    "calender": "Calendario",
+    "users": "Usuarios",
+    "bookings": "Reservas",
+    "logout": "Cerrar sesión",
+    "edit-booking": "Editar Reserva",
+    "create-booking": "Nueva Reserva",
+    "edit-user": "Editar Usuario",
+    "create-user": "Nuevo Usuario",
+    "update": "Actualizar",
+    "filter": "Filtrar",
+    "search": "Buscar",
+    "confirmDelete": "¿Está seguro de que desea eliminar este elemento?"
+  },
+  "user": {
+    "title": "Reservas",
+    "filter": "Filtrar",
+    "search": "Buscar usuario",
+    "add": "Agregar Usuario",
+    "form": {
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "username": "Nombre de usuario",
+      "email": "Correo electrónico",
+      "status": "Estado",
+      "mobileNo": "Número móvil",
+      "role": "Rol",
+      "actions": "Acciones"
+    },
+    "action": {
+      "cancel": "Cancelar",
+      "booking": "Reserva"
+    },
+    "list": {
+      "customerName": "Nombre del Cliente",
+      "date": "Fecha",
+      "duration": "Duración",
+      "status": "Estado"
+    }
+  },
+  "booking": {
+    "title": "Reservas",
+    "filter": "Filtrar",
+    "search": "Buscar reservas",
+    "add": "Agregar Reserva",
+    "form": {
+      "customerName": "Nombre del Cliente",
+      "clockIn": "Hora de Entrada",
+      "clockOut": "Hora de Salida",
+      "status": "Estado",
+      "mobileNumber": "Número móvil",
+      "notes": "Notas",
+      "actions": "Acciones"
+    },
+    "action": {
+      "cancel": "Cancelar",
+      "booking": "Reserva"
+    },
+    "list": {
+      "customerName": "Nombre del Cliente",
+      "date": "Fecha",
+      "duration": "Duración",
+      "status": "Estado"
+    }
+  }
+}
