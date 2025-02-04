@@ -15,7 +15,7 @@
     "confirmDelete": "Are you sure you want to delete this item?"
   },
   "user": {
-    "title": "Bookings",
+    "title": "Users",
     "filter": "Filter",
     "search": "Search user",
     "filter-by": "Filter By Booking sites",

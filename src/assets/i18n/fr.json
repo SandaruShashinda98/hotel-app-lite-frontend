@@ -4,27 +4,29 @@
     "users": "Utilisateurs",
     "bookings": "Réservations",
     "logout": "Déconnexion",
-    "edit-booking": "Modifier la Réservation",
-    "create-booking": "Nouvelle Réservation",
-    "edit-user": "Modifier l'Utilisateur",
-    "create-user": "Nouvel Utilisateur",
+    "edit-booking": "Modifier la réservation",
+    "create-booking": "Nouvelle réservation",
+    "edit-user": "Modifier l'utilisateur",
+    "create-user": "Nouvel utilisateur",
+    
     "update": "Mettre à jour",
     "filter": "Filtrer",
     "search": "Rechercher",
     "confirmDelete": "Êtes-vous sûr de vouloir supprimer cet élément ?"
   },
   "user": {
-    "title": "Réservations",
+    "title": "Utilisateurs",
     "filter": "Filtrer",
     "search": "Rechercher un utilisateur",
-    "add": "Ajouter un Utilisateur",
+    "filter-by": "Filtrer par sites de réservation",
+    "add": "Ajouter un utilisateur",
     "form": {
       "firstName": "Prénom",
       "lastName": "Nom",
       "username": "Nom d'utilisateur",
-      "email": "Email",
+      "email": "E-mail",
       "status": "Statut",
-      "mobileNo": "Numéro mobile",
+      "mobileNo": "Numéro de mobile",
       "role": "Rôle",
       "actions": "Actions"
     },
@@ -33,7 +35,7 @@
       "booking": "Réservation"
     },
     "list": {
-      "customerName": "Nom du Client",
+      "customerName": "Nom du client",
       "date": "Date",
       "duration": "Durée",
       "status": "Statut"
@@ -43,14 +45,14 @@
     "title": "Réservations",
     "filter": "Filtrer",
     "search": "Rechercher des réservations",
-    "add": "Ajouter une Réservation",
+    "add": "Ajouter une réservation",
     "form": {
-      "customerName": "Nom du Client",
-      "clockIn": "Heure d'Arrivée",
-      "clockOut": "Heure de Départ",
+      "customerName": "Nom du client",
+      "clockIn": "Entrée",
+      "clockOut": "Sortie",
       "status": "Statut",
-      "mobileNumber": "Numéro mobile",
-      "notes": "Notes",
+      "mobileNumber": "Numéro de mobile",
+      "notes": "Remarques",
       "actions": "Actions"
     },
     "action": {
@@ -58,7 +60,7 @@
       "booking": "Réservation"
     },
     "list": {
-      "customerName": "Nom du Client",
+      "customerName": "Nom du client",
       "date": "Date",
       "duration": "Durée",
       "status": "Statut"

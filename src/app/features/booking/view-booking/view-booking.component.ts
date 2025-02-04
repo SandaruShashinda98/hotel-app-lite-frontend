@@ -54,6 +54,7 @@ export class ViewBookingComponent {
   totalItems = signal<number>(0);
   displayedColumns = [
     'customer_name',
+    'mobile_number',
     'clock_in',
     'clock_out',
     'status',

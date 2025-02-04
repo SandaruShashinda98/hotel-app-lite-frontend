@@ -4,27 +4,29 @@
     "users": "Usuarios",
     "bookings": "Reservas",
     "logout": "Cerrar sesión",
-    "edit-booking": "Editar Reserva",
-    "create-booking": "Nueva Reserva",
-    "edit-user": "Editar Usuario",
-    "create-user": "Nuevo Usuario",
+    "edit-booking": "Editar reserva",
+    "create-booking": "Nueva reserva",
+    "edit-user": "Editar usuario",
+    "create-user": "Nuevo usuario",
+    
     "update": "Actualizar",
     "filter": "Filtrar",
     "search": "Buscar",
-    "confirmDelete": "¿Está seguro de que desea eliminar este elemento?"
+    "confirmDelete": "¿Estás seguro de que deseas eliminar este elemento?"
   },
   "user": {
-    "title": "Reservas",
+    "title": "Usuarios",
     "filter": "Filtrar",
     "search": "Buscar usuario",
-    "add": "Agregar Usuario",
+    "filter-by": "Filtrar por sitios de reserva",
+    "add": "Agregar usuario",
     "form": {
       "firstName": "Nombre",
       "lastName": "Apellido",
       "username": "Nombre de usuario",
       "email": "Correo electrónico",
       "status": "Estado",
-      "mobileNo": "Número móvil",
+      "mobileNo": "Número de móvil",
       "role": "Rol",
       "actions": "Acciones"
     },
@@ -33,7 +35,7 @@
       "booking": "Reserva"
     },
     "list": {
-      "customerName": "Nombre del Cliente",
+      "customerName": "Nombre del cliente",
       "date": "Fecha",
       "duration": "Duración",
       "status": "Estado"
@@ -43,13 +45,13 @@
     "title": "Reservas",
     "filter": "Filtrar",
     "search": "Buscar reservas",
-    "add": "Agregar Reserva",
+    "add": "Agregar reserva",
     "form": {
-      "customerName": "Nombre del Cliente",
-      "clockIn": "Hora de Entrada",
-      "clockOut": "Hora de Salida",
+      "customerName": "Nombre del cliente",
+      "clockIn": "Entrada",
+      "clockOut": "Salida",
       "status": "Estado",
-      "mobileNumber": "Número móvil",
+      "mobileNumber": "Número de móvil",
       "notes": "Notas",
       "actions": "Acciones"
     },
@@ -58,7 +60,7 @@
       "booking": "Reserva"
     },
     "list": {
-      "customerName": "Nombre del Cliente",
+      "customerName": "Nombre del cliente",
       "date": "Fecha",
       "duration": "Duración",
       "status": "Estado"

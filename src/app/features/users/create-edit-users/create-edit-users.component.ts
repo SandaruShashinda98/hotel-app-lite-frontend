@@ -49,7 +49,6 @@ export class CreateEditUsersComponent {
     last_name: ['', Validators.required],
     username: ['', Validators.required],
     email: ['', Validators.required],
-    mobileNo: ['', Validators.required],
     role_permission: ['ADMIN', Validators.required],
   });
 
