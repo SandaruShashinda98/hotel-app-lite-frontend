@@ -20,7 +20,7 @@ export class UserService {
   }
 
   createUser(booking: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, booking);
+    return this.http.patch<any>(this.apiUrl, booking);
   }
 
   updateUser(id: number, booking: any): Observable<any> {
