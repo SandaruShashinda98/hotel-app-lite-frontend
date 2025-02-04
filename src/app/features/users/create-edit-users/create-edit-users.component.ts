@@ -50,7 +50,7 @@ export class CreateEditUsersComponent {
     username: ['', Validators.required],
     email: ['', Validators.required],
     mobileNo: ['', Validators.required],
-    role: ['ADMIN', Validators.required],
+    role_permission: ['ADMIN', Validators.required],
   });
 
   isEditMode = false;

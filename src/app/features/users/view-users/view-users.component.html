@@ -96,8 +96,8 @@
         {{ "user.form.role" | translate }}
       </th>
       <td mat-cell *matCellDef="let user">
-        <span [class]="getRoleClass(user.role)">
-          {{ user.role }}
+        <span [class]="getRoleClass(user.role_permission)">
+          {{ user.role_permission }}
         </span>
       </td>
     </ng-container>
