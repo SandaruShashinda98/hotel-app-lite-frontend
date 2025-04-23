@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { BookingService } from '../booking.service';
 import {
@@ -96,7 +96,7 @@ export class BookingCalendarComponent {
   );
 
   events: CalendarEvent[] = [];
-
+  isAdmin = signal<boolean>(true);
   refresh: Subject<any> = new Subject();
 
   constructor(
@@ -105,6 +105,11 @@ export class BookingCalendarComponent {
   ) {}
 
   ngOnInit(): void {
+    const currentUser = this.authService.getCurrentUser();
+    if (currentUser.role_permission !== 'ADMIN') {
+      this.isAdmin.set(false);
+    }
+
     this.bookingService.getBookings().subscribe({
       next: (res) => {
         this.events = res.data.map((booking) => ({

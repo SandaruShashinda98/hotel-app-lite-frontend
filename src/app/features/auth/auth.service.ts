@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,8 @@ export class AuthService {
 
   constructor(
     private readonly http: HttpClient,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly snackBar: MatSnackBar
   ) {}
 
   // Register a new user
@@ -27,10 +29,16 @@ export class AuthService {
       next: (res: any) => {
         localStorage.setItem('token', res.data.access_token); // Store the token
         this.router.navigate(['/bookings']); // Redirect to a protected route
+        this.snackBar.open(`Successfully logged in!`, 'Close', {
+          duration: 3000,
+        });
       },
-      error: (err)=>{
-        console.log(err)
-      }
+      error: (err) => {
+        this.snackBar.open(`Password or email is wrong, try again!`, 'Close', {
+          duration: 3000,
+        });
+        console.log(err);
+      },
     });
   }
 

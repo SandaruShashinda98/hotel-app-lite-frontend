@@ -48,6 +48,7 @@ export class ViewRoomsComponent {
 
   rooms = signal<IRoom[]>([]);
   loading = signal<boolean>(false);
+  isAdmin = signal<boolean>(true);
   filterControl = new FormControl('');
   filterControlType = new FormControl('');
   totalItems = signal<number>(0);
@@ -76,6 +77,12 @@ export class ViewRoomsComponent {
   }
 
   ngOnInit() {
+
+    const currentUser = this.authService.getCurrentUser();
+    if (currentUser.role_permission !== 'ADMIN') {
+      this.isAdmin.set(false);
+    }
+
     this.route.queryParams.subscribe((params) => {
       const size = Number(params['size']) || 10;
       const start = Number(params['start']) || 1;

@@ -65,6 +65,11 @@ export class ViewUsersComponent {
   }
 
   ngOnInit() {
+    const currentUser = this.authService.getCurrentUser()
+    if (currentUser.role_permission !== 'ADMIN') {
+      this.router.navigate(['/bookings']);
+    }
+
     this.route.queryParams.subscribe((params) => {
       const size = Number(params['size']) || 10;
       const start = Number(params['start']) || 1;

@@ -53,6 +53,7 @@ export class ViewBookingComponent {
 
   bookings = signal<IBooking[]>([]);
   loading = signal<boolean>(false);
+  isAdmin = signal<boolean>(true);
   filterControl = new FormControl('');
   filterControlSite = new FormControl('');
   filterControlStatus = new FormControl('');
@@ -88,6 +89,11 @@ export class ViewBookingComponent {
   }
 
   ngOnInit() {
+    const currentUser = this.authService.getCurrentUser();
+    if (currentUser.role_permission !== 'ADMIN') {
+      this.isAdmin.set(false);
+    }
+
     this.route.queryParams.subscribe((params) => {
       const size = Number(params['size']) || 10;
       const start = Number(params['start']) || 1;
