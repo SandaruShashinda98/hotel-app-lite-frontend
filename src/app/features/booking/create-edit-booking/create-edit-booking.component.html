@@ -1,4 +1,4 @@
-<div lass="bg-gradient-to-r from-blue-100 to-indigo-200 p-0 m-0 h-[100vh]">
+<div class="bg-gradient-to-r from-blue-100 to-indigo-200 p-0 m-0 h-[100vh]">
   <div class="bg-gradient-to-r from-blue-300 to-indigo-400 shadow-lg p-4 mb-6">
     <div class="flex items-center justify-between">
       <!-- Back button with more subtle styling -->
@@ -23,89 +23,221 @@
     </div>
   </div>
 
-  <div class="px-6 max-w-xl mx-auto">
+  <div class="px-6 max-w-2xl mx-auto">
     <div class="flex items-center my-6">
       <div class="w-1 h-8 bg-indigo-500 rounded-full mr-3"></div>
       <h1 class="text-2xl font-bold text-gray-800 tracking-tight">
         @if(isEditMode){
-        {{ "common.edit-booking" | translate }}
+          {{ "common.edit-booking" | translate }}
         }@else {
-        {{ "common.create-booking" | translate }}
+          {{ "common.create-booking" | translate }}
         }
       </h1>
     </div>
 
     <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" class="space-y-2">
-      <mat-form-field class="w-full">
-        <mat-label> {{ "booking.form.customerName" | translate }}</mat-label>
-        <input matInput formControlName="customer_name" required />
-        @if (bookingForm.get('customer_name')?.hasError('required')) {
-        <mat-error>Customer name is required</mat-error>
+      <!-- Customer Information -->
+      <div class="bg-white p-4 rounded-lg shadow-sm mb-4">
+        <h2 class="text-lg font-semibold mb-3 text-gray-700">
+          {{ "booking.form.customerInfo" | translate }}
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <mat-form-field class="w-full">
+            <mat-label>{{ "booking.form.customerName" | translate }}</mat-label>
+            <input matInput formControlName="customer_name" required />
+            @if (bookingForm.get('customer_name')?.hasError('required') && bookingForm.get('customer_name')?.touched) {
+              <mat-error>{{ "booking.form.customerNameRequired" | translate }}</mat-error>
+            }
+          </mat-form-field>
+  
+          <mat-form-field class="w-full">
+            <mat-label>{{ "booking.form.mobileNumber" | translate }}</mat-label>
+            <input matInput formControlName="mobile_number" required />
+            @if (bookingForm.get('mobile_number')?.hasError('required') && bookingForm.get('mobile_number')?.touched) {
+              <mat-error>{{ "booking.form.mobileNumberRequired" | translate }}</mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Booking Details -->
+      <div class="bg-white p-4 rounded-lg shadow-sm mb-4">
+        <h2 class="text-lg font-semibold mb-3 text-gray-700">
+          {{ "booking.form.bookingDetails" | translate }}
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Check-in date and time -->
+          <div class="w-full flex flex-col">
+            <label class="text-sm mb-1 text-gray-700">{{ "booking.form.clockIn" | translate }}</label>
+            <div class="grid grid-cols-3 gap-2">
+              <mat-form-field class="col-span-2">
+                <mat-label>{{ "booking.form.date" | translate }}</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="picker_clock_in"
+                  formControlName="clock_in_date"
+                  required
+                />
+                <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="picker_clock_in"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker_clock_in></mat-datepicker>
+                @if (bookingForm.get('clock_in_date')?.hasError('required') && bookingForm.get('clock_in_date')?.touched) {
+                  <mat-error>{{ "booking.form.dateRequired" | translate }}</mat-error>
+                }
+              </mat-form-field>
+              
+              <mat-form-field>
+                <mat-label>{{ "booking.form.time" | translate }}</mat-label>
+                <input 
+                  matInput 
+                  type="time" 
+                  formControlName="clock_in_time"
+                  required
+                />
+                @if (bookingForm.get('clock_in_time')?.hasError('required') && bookingForm.get('clock_in_time')?.touched) {
+                  <mat-error>{{ "booking.form.timeRequired" | translate }}</mat-error>
+                }
+              </mat-form-field>
+            </div>
+          </div>
+  
+          <!-- Check-out date and time -->
+          <div class="w-full flex flex-col">
+            <label class="text-sm mb-1 text-gray-700">{{ "booking.form.clockOut" | translate }}</label>
+            <div class="grid grid-cols-3 gap-2">
+              <mat-form-field class="col-span-2">
+                <mat-label>{{ "booking.form.date" | translate }}</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="picker_clock_out"
+                  formControlName="clock_out_date"
+                  required
+                />
+                <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="picker_clock_out"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker_clock_out></mat-datepicker>
+                @if (bookingForm.get('clock_out_date')?.hasError('required') && bookingForm.get('clock_out_date')?.touched) {
+                  <mat-error>{{ "booking.form.dateRequired" | translate }}</mat-error>
+                }
+              </mat-form-field>
+              
+              <mat-form-field>
+                <mat-label>{{ "booking.form.time" | translate }}</mat-label>
+                <input 
+                  matInput 
+                  type="time" 
+                  formControlName="clock_out_time"
+                  required
+                />
+                @if (bookingForm.get('clock_out_time')?.hasError('required') && bookingForm.get('clock_out_time')?.touched) {
+                  <mat-error>{{ "booking.form.timeRequired" | translate }}</mat-error>
+                }
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <mat-form-field class="w-full">
+          <mat-label>{{ "booking.form.status" | translate }}</mat-label>
+          <mat-select formControlName="status" required>
+            <mat-option value="pending">{{ "booking.status.pending" | translate }}</mat-option>
+            <mat-option value="confirmed">{{ "booking.status.confirmed" | translate }}</mat-option>
+            <mat-option value="completed">{{ "booking.status.completed" | translate }}</mat-option>
+            <mat-option value="canceled">{{ "booking.status.canceled" | translate }}</mat-option>
+          </mat-select>
+          @if (bookingForm.get('status')?.hasError('required') && bookingForm.get('status')?.touched) {
+            <mat-error>{{ "booking.form.statusRequired" | translate }}</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <!-- Room Selection -->
+      <div class="bg-white p-4 rounded-lg shadow-sm mb-4">
+        <div class="flex justify-between items-center mb-3">
+          <h2 class="text-lg font-semibold text-gray-700">
+            {{ "booking.form.roomSelection" | translate }}
+          </h2>
+          
+          @if (isLoadingRooms) {
+            <div class="flex items-center">
+              <mat-spinner diameter="20" class="mr-2"></mat-spinner>
+              <span class="text-sm text-gray-500">{{ "booking.form.loadingRooms" | translate }}</span>
+            </div>
+          }
+        </div>
+        
+        <mat-form-field class="w-full">
+          <mat-label>{{ "booking.form.selectRoom" | translate }}</mat-label>
+          <mat-select formControlName="room_id" required>
+            @for (room of availableRooms; track room._id) {
+              <mat-option [value]="room._id">
+                {{ room.name }} ({{ room.room_number }}) - {{ room.room_type }} - {{ room.price_per_night | currency }}
+              </mat-option>
+            }
+            @if (availableRooms.length === 0 && !isLoadingRooms) {
+              <mat-option disabled>{{ "booking.form.noRoomsAvailable" | translate }}</mat-option>
+            }
+          </mat-select>
+          @if (bookingForm.get('room_id')?.hasError('required') && bookingForm.get('room_id')?.touched) {
+            <mat-error>{{ "booking.form.roomRequired" | translate }}</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Room price summary -->
+        @if (bookingForm.get('room_id')?.value && availableRooms.length > 0) {
+          <div class="bg-blue-50 p-3 rounded-lg mt-2">
+            <div class="flex justify-between">
+              <span class="font-medium">{{ "booking.form.nightlyRate" | translate }}:</span>
+              <!-- <span>{{ getRoomPrice(bookingForm.get('room_id')?.value as string) | currency }}</span> -->
+            </div>
+            <div class="flex justify-between mt-1">
+              <span class="font-medium">{{ "booking.form.totalPrice" | translate }}:</span>
+              <span class="font-bold text-blue-800">{{ calculateTotalPrice() | currency }}</span>
+            </div>
+          </div>
         }
-      </mat-form-field>
+      </div>
 
-      <mat-form-field class="w-full">
-        <mat-label>{{ "booking.form.mobileNumber" | translate }}</mat-label>
-        <input matInput formControlName="mobile_number" required />
-      </mat-form-field>
+      <!-- Notes -->
+      <div class="bg-white p-4 rounded-lg shadow-sm mb-4">
+        <h2 class="text-lg font-semibold mb-3 text-gray-700">
+          {{ "booking.form.additionalInfo" | translate }}
+        </h2>
+        
+        <mat-form-field class="w-full">
+          <mat-label>{{ "booking.form.notes" | translate }}</mat-label>
+          <textarea matInput formControlName="note" rows="3"></textarea>
+        </mat-form-field>
+      </div>
 
-      <mat-form-field class="w-full">
-        <mat-label> {{ "booking.form.clockIn" | translate }}</mat-label>
-        <input
-          matInput
-          [matDatepicker]="picker_clock_in"
-          formControlName="clock_in"
-          required
-        />
-        <mat-datepicker-toggle
-          matIconSuffix
-          [for]="picker_clock_in"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #picker_clock_in></mat-datepicker>
-      </mat-form-field>
-
-      <mat-form-field class="w-full">
-        <mat-label> {{ "booking.form.clockOut" | translate }}</mat-label>
-        <input
-          matInput
-          [matDatepicker]="picker_clock_out"
-          formControlName="clock_out"
-          required
-        />
-        <mat-datepicker-toggle
-          matIconSuffix
-          [for]="picker_clock_out"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #picker_clock_out></mat-datepicker>
-      </mat-form-field>
-
-      <mat-form-field class="w-full">
-        <mat-label> {{ "booking.form.status" | translate }}</mat-label>
-        <mat-select formControlName="status" required>
-          <mat-option value="pending">Pending</mat-option>
-          <mat-option value="confirmed">Confirmed</mat-option>
-          <mat-option value="cancelled">Cancelled</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field class="w-full">
-        <mat-label>{{ "booking.form.notes" | translate }}</mat-label>
-        <textarea matInput formControlName="notes" rows="2"></textarea>
-      </mat-form-field>
-
-      <div class="flex justify-end space-x-4">
-        <button mat-button type="button" (click)="goBack()">
+      <!-- Form Actions -->
+      <div class="flex justify-end space-x-4 pt-4">
+        <button 
+          mat-button 
+          type="button" 
+          (click)="goBack()"
+          [disabled]="submitting"
+        >
           {{ "booking.action.cancel" | translate }}
         </button>
+        
         <button
           mat-raised-button
           color="primary"
           type="submit"
-          [disabled]="bookingForm.invalid"
+          [disabled]="bookingForm.invalid || isLoadingRooms || submitting || availableRooms.length === 0"
           class="bg-blue-600"
         >
-          {{ isEditMode ? "Update" : "Create" }}
-          {{ "booking.action.booking" | translate }}
+          @if (submitting) {
+            <mat-spinner diameter="20" class="mr-2"></mat-spinner>
+          }
+          {{ isEditMode ? ("booking.action.update" | translate) : ("booking.action.create" | translate) }}
         </button>
       </div>
     </form>

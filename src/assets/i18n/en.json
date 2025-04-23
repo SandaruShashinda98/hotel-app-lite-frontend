@@ -1,6 +1,6 @@
 {
   "common": {
-    "calender": "Calender",
+    "calender": "Calendar",
     "users": "Users",
     "bookings": "Bookings",
     "rooms": "Rooms",
@@ -9,6 +9,8 @@
     "create-booking": "New Booking",
     "edit-user": "Edit User",
     "create-user": "New User",
+    "edit-room": "Edit Room",
+    "create-room": "New Room",
     "update": "Update",
     "filter": "Filter",
     "search": "Search",
@@ -32,7 +34,9 @@
     },
     "action": {
       "cancel": "Cancel",
-      "booking": "Booking"
+      "booking": "Booking",
+      "update": "Update User",
+      "create": "Create User"
     },
     "list": {
       "customerName": "Customer Name",
@@ -41,29 +45,48 @@
       "status": "Status"
     }
   },
+
   "booking": {
-    "title": "Bookings",
-    "filter": "Filter",
+    "add": "Create Booking",
     "search": "Search bookings",
-    "add": "Add Booking",
+    "filter-by": "Filter By Source",
+    "status": {
+      "confirmed": "Confirmed",
+      "pending": "Pending",
+      "completed": "Completed",
+      "canceled": "Canceled"
+    },
     "form": {
       "customerName": "Customer Name",
-      "clockIn": " Clock In",
-      "clockOut": " Clock Out",
+      "customerNameRequired": "Customer name is required",
+      "mobileNumber": "Mobile Number",
+      "mobileNumberRequired": "Mobile number is required",
+      "clockIn": "Check In",
+      "clockOut": "Check Out",
+      "date": "Date",
+      "dateRequired": "Date is required",
+      "time": "Time",
+      "timeRequired": "Time is required",
       "status": "Status",
-      "mobileNumber": "Mobile number",
+      "statusRequired": "Status is required",
       "notes": "Notes",
-      "actions": "Actions"
+      "actions": "Actions",
+      "customerInfo": "Customer Information",
+      "bookingDetails": "Booking Details",
+      "roomSelection": "Room Selection",
+      "roomInfo": "Room Information",
+      "selectRoom": "Select Room",
+      "roomRequired": "Room selection is required",
+      "loadingRooms": "Loading available rooms...",
+      "noRoomsAvailable": "No rooms available for these dates",
+      "additionalInfo": "Additional Information",
+      "nightlyRate": "Nightly Rate",
+      "totalPrice": "Total Price"
     },
     "action": {
       "cancel": "Cancel",
-      "booking": "Booking"
-    },
-    "list": {
-      "customerName": "Customer Name",
-      "date": "Date",
-      "duration": "Duration",
-      "status": "Status"
+      "update": "Update Booking",
+      "create": "Create Booking"
     }
   },
   "room": {
@@ -93,6 +116,66 @@
       "amenities": "Amenities",
       "addAmenity": "Add amenity",
       "actions": "Actions"
+    },
+    "action": {
+      "cancel": "Cancel",
+      "room": "Room",
+      "update": "Update Room",
+      "create": "Create Room"
+    },
+    "status": {
+      "available": "Available",
+      "occupied": "Occupied",
+      "maintenance": "Maintenance"
+    },
+    "types": {
+      "single": "Single",
+      "double": "Double",
+      "suite": "Suite",
+      "deluxe": "Deluxe",
+      "family": "Family"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to your account",
+      "email": "Email",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email",
+      "password": "Password",
+      "passwordRequired": "Password is required",
+      "passwordMinLength": "Password must be at least 6 characters",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot password?",
+      "signIn": "Sign In",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up"
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Join our hotel management platform",
+      "firstName": "First Name",
+      "firstNameRequired": "First name is required",
+      "lastName": "Last Name",
+      "lastNameRequired": "Last name is required",
+      "username": "Username",
+      "usernameRequired": "Username is required",
+      "usernameMinLength": "Username must be at least 3 characters",
+      "email": "Email",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email",
+      "password": "Password",
+      "passwordRequired": "Password is required",
+      "passwordMinLength": "Password must be at least 6 characters",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordRequired": "Please confirm your password",
+      "passwordMismatch": "Passwords do not match",
+      "termsAccepted": "I accept the Terms of Service and Privacy Policy",
+      "termsRequired": "You must accept the terms to continue",
+      "signUp": "Sign Up",
+      "haveAccount": "Already have an account?",
+      "signIn": "Sign in"
     }
   }
 }

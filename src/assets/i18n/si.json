@@ -1,68 +1,180 @@
 {
   "common": {
     "calender": "දින දර්ශනය",
-    "users": "පරිශීලකයන්",
+    "users": "පරිශීලකයින්",
     "bookings": "වෙන්කිරීම්",
+    "rooms": "කාමර",
     "logout": "පිටවීම",
     "edit-booking": "වෙන්කිරීම සංස්කරණය කරන්න",
     "create-booking": "නව වෙන්කිරීම",
-    "edit-user": "පරිශීලක සංස්කරණය",
-    "create-user": "නව පරිශීලක",
+    "edit-user": "පරිශීලකයා සංස්කරණය කරන්න",
+    "create-user": "නව පරිශීලකයා",
+    "edit-room": "කාමරය සංස්කරණය කරන්න",
+    "create-room": "නව කාමරය",
     "update": "යාවත්කාලීන කරන්න",
-    "filter": "පෙරන්න",
+    "filter": "පෙරහන",
     "search": "සොයන්න",
-    "confirmDelete": "ඔබට මෙම අයිතමය මැකීමට අවශ්‍ය බව විශ්වාසද?"
+    "confirmDelete": "ඔබට මෙම අයිතමය මකා දැමීමට අවශ්‍ය බව විශ්වාසද?"
   },
   "user": {
-    "title": "පරිශීලකයන්",
-    "filter": "පෙරන්න",
-    "search": "පරිශීලක සොයන්න",
-    "filter-by": "වෙන්කිරීම් ස්ථාන අනුව පෙරන්න",
-    "add": "පරිශීලක එකතු කරන්න",
+    "title": "පරිශීලකයින්",
+    "filter": "පෙරහන",
+    "search": "පරිශීලකයා සොයන්න",
+    "filter-by": "වෙන්කිරීම් අඩවි අනුව පෙරන්න",
+    "add": "පරිශීලකයා එක් කරන්න",
     "form": {
       "firstName": "මුල් නම",
-      "lastName": "අවසන් නම",
+      "lastName": "අවසාන නම",
       "username": "පරිශීලක නාමය",
       "email": "විද්‍යුත් තැපෑල",
       "status": "තත්ත්වය",
       "mobileNo": "ජංගම දුරකථන අංකය",
       "role": "කාර්යභාරය",
-      "actions": "ක්‍රියාමාර්ග"
+      "actions": "ක්‍රියාවන්"
     },
     "action": {
       "cancel": "අවලංගු කරන්න",
-      "booking": "වෙන්කරවා ගැනීම"
+      "booking": "වෙන්කිරීම",
+      "update": "පරිශීලකයා යාවත්කාලීන කරන්න",
+      "create": "පරිශීලකයා සාදන්න"
     },
     "list": {
-      "customerName": "පාරිභෝගික නම",
+      "customerName": "ගනුදෙනුකරුගේ නම",
       "date": "දිනය",
       "duration": "කාල සීමාව",
       "status": "තත්ත්වය"
     }
   },
   "booking": {
-    "title": "වෙන්කිරීම්",
-    "filter": "පෙරන්න",
+    "add": "වෙන්කිරීම සාදන්න",
     "search": "වෙන්කිරීම් සොයන්න",
-    "add": "වෙන්කිරීම් එකතු කරන්න",
+    "filter-by": "මූලාශ්‍රය අනුව පෙරන්න",
+    "status": {
+      "confirmed": "තහවුරු කරන ලදී",
+      "pending": "අපේක්ෂිත",
+      "completed": "සම්පූර්ණයි",
+      "canceled": "අවලංගු කරන ලදී"
+    },
     "form": {
-      "customerName": "පාරිභෝගික නම",
-      "clockIn": "ඇතුළු වන වේලාව",
-      "clockOut": "පිටවන වේලාව",
-      "status": "තත්ත්වය",
+      "customerName": "ගනුදෙනුකරුගේ නම",
+      "customerNameRequired": "ගනුදෙනුකරුගේ නම අවශ්‍යයි",
       "mobileNumber": "ජංගම දුරකථන අංකය",
+      "mobileNumberRequired": "ජංගම දුරකථන අංකය අවශ්‍යයි",
+      "clockIn": "පැමිණීම",
+      "clockOut": "පිටවීම",
+      "date": "දිනය",
+      "dateRequired": "දිනය අවශ්‍යයි",
+      "time": "වේලාව",
+      "timeRequired": "වේලාව අවශ්‍යයි",
+      "status": "තත්ත්වය",
+      "statusRequired": "තත්ත්වය අවශ්‍යයි",
       "notes": "සටහන්",
-      "actions": "ක්‍රියාමාර්ග"
+      "actions": "ක්‍රියාවන්",
+      "customerInfo": "ගනුදෙනුකරුගේ තොරතුරු",
+      "bookingDetails": "වෙන්කිරීම් විස්තර",
+      "roomSelection": "කාමරය තේරීම",
+      "roomInfo": "කාමරයේ තොරතුරු",
+      "selectRoom": "කාමරය තෝරන්න",
+      "roomRequired": "කාමරය තේරීම අවශ්‍යයි",
+      "loadingRooms": "ලබාගත හැකි කාමර පූරණය වෙමින්...",
+      "noRoomsAvailable": "මෙම දිනයන් සඳහා කාමර නොමැත",
+      "additionalInfo": "අමතර තොරතුරු",
+      "nightlyRate": "රාත්‍රී ගාස්තුව",
+      "totalPrice": "මුළු මිල"
     },
     "action": {
       "cancel": "අවලංගු කරන්න",
-      "booking": "වෙන්කරවා ගැනීම"
+      "update": "වෙන්කිරීම යාවත්කාලීන කරන්න",
+      "create": "වෙන්කිරීම සාදන්න"
+    }
+  },
+  "room": {
+    "title": "කාමර",
+    "create": "කාමරය සාදන්න",
+    "edit": "කාමරය සංස්කරණය කරන්න",
+    "filter": "පෙරහන",
+    "search": "කාමර සොයන්න",
+    "filter-by": "කාමර වර්ගය අනුව පෙරන්න",
+    "add": "කාමරය එක් කරන්න",
+    "form": {
+      "name": "කාමරයේ නම",
+      "nameRequired": "කාමරයේ නම අවශ්‍යයි",
+      "roomNumber": "කාමර අංකය",
+      "roomNumberRequired": "කාමර අංකය අවශ්‍යයි",
+      "roomType": "කාමරයේ වර්ගය",
+      "roomTypeRequired": "කාමරයේ වර්ගය අවශ්‍යයි",
+      "capacity": "ධාරිතාව",
+      "capacityRequired": "ධාරිතාව අවශ්‍යයි",
+      "capacityMin": "ධාරිතාව අවම වශයෙන් 1 විය යුතුය",
+      "pricePerNight": "රාත්‍රියකට මිල",
+      "priceRequired": "මිල අවශ්‍යයි",
+      "priceMin": "මිල ධනාත්මක අගයක් විය යුතුය",
+      "status": "තත්ත්වය",
+      "statusRequired": "තත්ත්වය අවශ්‍යයි",
+      "description": "විස්තරය",
+      "amenities": "පහසුකම්",
+      "addAmenity": "පහසුකම් එක් කරන්න",
+      "actions": "ක්‍රියාවන්"
     },
-    "list": {
-      "customerName": "පාරිභෝගික නම",
-      "date": "දිනය", 
-      "duration": "කාල සීමාව",
-      "status": "තත්ත්වය"
+    "action": {
+      "cancel": "අවලංගු කරන්න",
+      "room": "කාමරය",
+      "update": "කාමරය යාවත්කාලීන කරන්න",
+      "create": "කාමරය සාදන්න"
+    },
+    "status": {
+      "available": "පවතී",
+      "occupied": "භාවිතයේ",
+      "maintenance": "නඩත්තු කටයුතු"
+    },
+    "types": {
+      "single": "තනි",
+      "double": "ද්විත්ව",
+      "suite": "සුපිරි",
+      "deluxe": "සුඛෝපභෝගී",
+      "family": "පවුල්"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "ආපසු සාදරයෙන් පිළිගනිමු",
+      "subtitle": "ඔබගේ ගිණුමට පිවිසෙන්න",
+      "email": "විද්‍යුත් තැපෑල",
+      "emailRequired": "විද්‍යුත් තැපෑල අවශ්‍යයි",
+      "emailInvalid": "කරුණාකර වලංගු විද්‍යුත් තැපෑලක් ඇතුළත් කරන්න",
+      "password": "මුරපදය",
+      "passwordRequired": "මුරපදය අවශ්‍යයි",
+      "passwordMinLength": "මුරපදය අවම වශයෙන් අක්ෂර 6 ක් විය යුතුය",
+      "rememberMe": "මාව මතක තබා ගන්න",
+      "forgotPassword": "මුරපදය අමතක වුණාද?",
+      "signIn": "පුරන්න",
+      "noAccount": "ගිණුමක් නැද්ද?",
+      "signUp": "ලියාපදිංචි වන්න"
+    },
+    "register": {
+      "title": "ගිණුම සාදන්න",
+      "subtitle": "අපගේ හෝටල් කළමනාකරණ වේදිකාවට සම්බන්ධ වන්න",
+      "firstName": "මුල් නම",
+      "firstNameRequired": "මුල් නම අවශ්‍යයි",
+      "lastName": "අවසාන නම",
+      "lastNameRequired": "අවසාන නම අවශ්‍යයි",
+      "username": "පරිශීලක නාමය",
+      "usernameRequired": "පරිශීලක නාමය අවශ්‍යයි",
+      "usernameMinLength": "පරිශීලක නාමය අවම වශයෙන් අක්ෂර 3 ක් විය යුතුය",
+      "email": "විද්‍යුත් තැපෑල",
+      "emailRequired": "විද්‍යුත් තැපෑල අවශ්‍යයි",
+      "emailInvalid": "කරුණාකර වලංගු විද්‍යුත් තැපෑලක් ඇතුළත් කරන්න",
+      "password": "මුරපදය",
+      "passwordRequired": "මුරපදය අවශ්‍යයි",
+      "passwordMinLength": "මුරපදය අවම වශයෙන් අක්ෂර 6 ක් විය යුතුය",
+      "confirmPassword": "මුරපදය තහවුරු කරන්න",
+      "confirmPasswordRequired": "කරුණාකර ඔබගේ මුරපදය තහවුරු කරන්න",
+      "passwordMismatch": "මුරපද නොගැලපේ",
+      "termsAccepted": "මම සේවා කොන්දේසි සහ රහස්යතා ප්‍රතිපත්තිය පිළිගනිමි",
+      "termsRequired": "ඉදිරියට යාමට ඔබ කොන්දේසි පිළිගත යුතුය",
+      "signUp": "ලියාපදිංචි වන්න",
+      "haveAccount": "දැනටමත් ගිණුමක් තිබේද?",
+      "signIn": "පුරන්න"
     }
   }
 }

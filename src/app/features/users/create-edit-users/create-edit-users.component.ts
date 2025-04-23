@@ -87,7 +87,7 @@ export class CreateEditUsersComponent {
   }
 
   goBack() {
-    this.router.navigate(['/bookings']);
+    this.router.navigate(['/users']);
   }
 
   //-------------------

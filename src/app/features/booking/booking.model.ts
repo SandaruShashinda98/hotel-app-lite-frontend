@@ -7,11 +7,25 @@ export interface IBaseEntity {
   is_delete?: boolean; // check wether document is deleted or not
 }
 
-export interface IBooking extends IBaseEntity {
+export interface IBooking {
+  _id?: any;
   customer_name: string;
   mobile_number: string;
   clock_in: Date;
   clock_out: Date;
-  status: 'pending' | 'confirmed' | 'cancelled';
-  note: string;
+  status: 'pending' | 'confirmed' | 'completed' | 'canceled';
+  note?: string;
+  room_id: any; // Reference to the selected room
+  room?: {
+    _id: number;
+    name: string;
+    room_number: string;
+    room_type: string;
+    price_per_night: number;
+  };
+  created_at?: Date;
+  updated_at?: Date;
+  created_by?: string;
+  changed_by?: string;
+  last_modified_on?: Date;
 }

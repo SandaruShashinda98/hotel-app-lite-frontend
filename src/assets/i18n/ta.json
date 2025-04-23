@@ -1,0 +1,180 @@
+{
+  "common": {
+    "calender": "நாட்காட்டி",
+    "users": "பயனர்கள்",
+    "bookings": "முன்பதிவுகள்",
+    "rooms": "அறைகள்",
+    "logout": "வெளியேறு",
+    "edit-booking": "முன்பதிவைத் திருத்து",
+    "create-booking": "புதிய முன்பதிவு",
+    "edit-user": "பயனரைத் திருத்து",
+    "create-user": "புதிய பயனர்",
+    "edit-room": "அறையைத் திருத்து",
+    "create-room": "புதிய அறை",
+    "update": "புதுப்பி",
+    "filter": "வடிகட்டு",
+    "search": "தேடு",
+    "confirmDelete": "இந்த உருப்படியை நீக்க விரும்புகிறீர்களா?"
+  },
+  "user": {
+    "title": "பயனர்கள்",
+    "filter": "வடிகட்டு",
+    "search": "பயனரைத் தேடு",
+    "filter-by": "முன்பதிவு தளங்கள் மூலம் வடிகட்டு",
+    "add": "பயனரைச் சேர்",
+    "form": {
+      "firstName": "முதல் பெயர்",
+      "lastName": "கடைசி பெயர்",
+      "username": "பயனர்பெயர்",
+      "email": "மின்னஞ்சல்",
+      "status": "நிலை",
+      "mobileNo": "கைபேசி எண்",
+      "role": "பங்கு",
+      "actions": "செயல்கள்"
+    },
+    "action": {
+      "cancel": "ரத்துசெய்",
+      "booking": "முன்பதிவு",
+      "update": "பயனரைப் புதுப்பி",
+      "create": "பயனரை உருவாக்கு"
+    },
+    "list": {
+      "customerName": "வாடிக்கையாளர் பெயர்",
+      "date": "தேதி",
+      "duration": "காலஅளவு",
+      "status": "நிலை"
+    }
+  },
+  "booking": {
+    "add": "முன்பதிவை உருவாக்கு",
+    "search": "முன்பதிவுகளைத் தேடு",
+    "filter-by": "மூலம் வடிகட்டு",
+    "status": {
+      "confirmed": "உறுதிசெய்யப்பட்டது",
+      "pending": "நிலுவையில் உள்ளது",
+      "completed": "முடிக்கப்பட்டது",
+      "canceled": "ரத்துசெய்யப்பட்டது"
+    },
+    "form": {
+      "customerName": "வாடிக்கையாளர் பெயர்",
+      "customerNameRequired": "வாடிக்கையாளர் பெயர் தேவை",
+      "mobileNumber": "கைபேசி எண்",
+      "mobileNumberRequired": "கைபேசி எண் தேவை",
+      "clockIn": "உள்நுழைவு",
+      "clockOut": "வெளியேறுதல்",
+      "date": "தேதி",
+      "dateRequired": "தேதி தேவை",
+      "time": "நேரம்",
+      "timeRequired": "நேரம் தேவை",
+      "status": "நிலை",
+      "statusRequired": "நிலை தேவை",
+      "notes": "குறிப்புகள்",
+      "actions": "செயல்கள்",
+      "customerInfo": "வாடிக்கையாளர் தகவல்",
+      "bookingDetails": "முன்பதிவு விவரங்கள்",
+      "roomSelection": "அறை தேர்வு",
+      "roomInfo": "அறை தகவல்",
+      "selectRoom": "அறையைத் தேர்ந்தெடு",
+      "roomRequired": "அறை தேர்வு தேவை",
+      "loadingRooms": "கிடைக்கும் அறைகளை ஏற்றுகிறது...",
+      "noRoomsAvailable": "இந்த தேதிகளுக்கு அறைகள் கிடைக்கவில்லை",
+      "additionalInfo": "கூடுதல் தகவல்",
+      "nightlyRate": "இரவு கட்டணம்",
+      "totalPrice": "மொத்த விலை"
+    },
+    "action": {
+      "cancel": "ரத்துசெய்",
+      "update": "முன்பதிவைப் புதுப்பி",
+      "create": "முன்பதிவை உருவாக்கு"
+    }
+  },
+  "room": {
+    "title": "அறைகள்",
+    "create": "அறையை உருவாக்கு",
+    "edit": "அறையைத் திருத்து",
+    "filter": "வடிகட்டு",
+    "search": "அறைகளைத் தேடு",
+    "filter-by": "அறை வகையால் வடிகட்டு",
+    "add": "அறையைச் சேர்",
+    "form": {
+      "name": "அறை பெயர்",
+      "nameRequired": "அறை பெயர் தேவை",
+      "roomNumber": "அறை எண்",
+      "roomNumberRequired": "அறை எண் தேவை",
+      "roomType": "அறை வகை",
+      "roomTypeRequired": "அறை வகை தேவை",
+      "capacity": "கொள்ளளவு",
+      "capacityRequired": "கொள்ளளவு தேவை",
+      "capacityMin": "கொள்ளளவு குறைந்தது 1 ஆக இருக்க வேண்டும்",
+      "pricePerNight": "இரவுக்கான விலை",
+      "priceRequired": "விலை தேவை",
+      "priceMin": "விலை நேர்மறை எண்ணாக இருக்க வேண்டும்",
+      "status": "நிலை",
+      "statusRequired": "நிலை தேவை",
+      "description": "விளக்கம்",
+      "amenities": "வசதிகள்",
+      "addAmenity": "வசதி சேர்",
+      "actions": "செயல்கள்"
+    },
+    "action": {
+      "cancel": "ரத்துசெய்",
+      "room": "அறை",
+      "update": "அறையைப் புதுப்பி",
+      "create": "அறையை உருவாக்கு"
+    },
+    "status": {
+      "available": "கிடைக்கிறது",
+      "occupied": "பயன்பாட்டில் உள்ளது",
+      "maintenance": "பராமரிப்பில் உள்ளது"
+    },
+    "types": {
+      "single": "ஒற்றை",
+      "double": "இரட்டை",
+      "suite": "சூட்",
+      "deluxe": "டீலக்ஸ்",
+      "family": "குடும்ப"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "மீண்டும் வரவேற்கிறோம்",
+      "subtitle": "உங்கள் கணக்கில் உள்நுழையவும்",
+      "email": "மின்னஞ்சல்",
+      "emailRequired": "மின்னஞ்சல் தேவை",
+      "emailInvalid": "சரியான மின்னஞ்சலை உள்ளிடவும்",
+      "password": "கடவுச்சொல்",
+      "passwordRequired": "கடவுச்சொல் தேவை",
+      "passwordMinLength": "கடவுச்சொல் குறைந்தது 6 எழுத்துகள் இருக்க வேண்டும்",
+      "rememberMe": "என்னை நினைவில் வைத்துக்கொள்",
+      "forgotPassword": "கடவுச்சொல் மறந்துவிட்டதா?",
+      "signIn": "உள்நுழை",
+      "noAccount": "கணக்கு இல்லையா?",
+      "signUp": "பதிவு செய்"
+    },
+    "register": {
+      "title": "கணக்கை உருவாக்கு",
+      "subtitle": "எங்கள் ஹோட்டல் மேலாண்மை தளத்தில் இணையுங்கள்",
+      "firstName": "முதல் பெயர்",
+      "firstNameRequired": "முதல் பெயர் தேவை",
+      "lastName": "கடைசி பெயர்",
+      "lastNameRequired": "கடைசி பெயர் தேவை",
+      "username": "பயனர்பெயர்",
+      "usernameRequired": "பயனர்பெயர் தேவை",
+      "usernameMinLength": "பயனர்பெயர் குறைந்தது 3 எழுத்துகள் இருக்க வேண்டும்",
+      "email": "மின்னஞ்சல்",
+      "emailRequired": "மின்னஞ்சல் தேவை",
+      "emailInvalid": "சரியான மின்னஞ்சலை உள்ளிடவும்",
+      "password": "கடவுச்சொல்",
+      "passwordRequired": "கடவுச்சொல் தேவை",
+      "passwordMinLength": "கடவுச்சொல் குறைந்தது 6 எழுத்துகள் இருக்க வேண்டும்",
+      "confirmPassword": "கடவுச்சொல்லை உறுதிப்படுத்து",
+      "confirmPasswordRequired": "உங்கள் கடவுச்சொல்லை உறுதிப்படுத்தவும்",
+      "passwordMismatch": "கடவுச்சொற்கள் பொருந்தவில்லை",
+      "termsAccepted": "சேவை விதிமுறைகள் மற்றும் தனியுரிமைக் கொள்கையை ஏற்கிறேன்",
+      "termsRequired": "தொடர விதிமுறைகளை ஏற்க வேண்டும்",
+      "signUp": "பதிவு செய்",
+      "haveAccount": "ஏற்கனவே கணக்கு உள்ளதா?",
+      "signIn": "உள்நுழை"
+    }
+  }
+}

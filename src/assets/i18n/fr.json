@@ -3,12 +3,14 @@
     "calender": "Calendrier",
     "users": "Utilisateurs",
     "bookings": "Réservations",
+    "rooms": "Chambres",
     "logout": "Déconnexion",
-    "edit-booking": "Modifier la réservation",
-    "create-booking": "Nouvelle réservation",
-    "edit-user": "Modifier l'utilisateur",
-    "create-user": "Nouvel utilisateur",
-    
+    "edit-booking": "Modifier la Réservation",
+    "create-booking": "Nouvelle Réservation",
+    "edit-user": "Modifier l'Utilisateur",
+    "create-user": "Nouvel Utilisateur",
+    "edit-room": "Modifier la Chambre",
+    "create-room": "Nouvelle Chambre",
     "update": "Mettre à jour",
     "filter": "Filtrer",
     "search": "Rechercher",
@@ -19,12 +21,12 @@
     "filter": "Filtrer",
     "search": "Rechercher un utilisateur",
     "filter-by": "Filtrer par sites de réservation",
-    "add": "Ajouter un utilisateur",
+    "add": "Ajouter un Utilisateur",
     "form": {
       "firstName": "Prénom",
       "lastName": "Nom",
       "username": "Nom d'utilisateur",
-      "email": "E-mail",
+      "email": "Email",
       "status": "Statut",
       "mobileNo": "Numéro de mobile",
       "role": "Rôle",
@@ -32,38 +34,147 @@
     },
     "action": {
       "cancel": "Annuler",
-      "booking": "Réservation"
+      "booking": "Réservation",
+      "update": "Mettre à jour l'Utilisateur",
+      "create": "Créer un Utilisateur"
     },
     "list": {
-      "customerName": "Nom du client",
+      "customerName": "Nom du Client",
       "date": "Date",
       "duration": "Durée",
       "status": "Statut"
     }
   },
   "booking": {
-    "title": "Réservations",
-    "filter": "Filtrer",
+    "add": "Créer une Réservation",
     "search": "Rechercher des réservations",
-    "add": "Ajouter une réservation",
+    "filter-by": "Filtrer par Source",
+    "status": {
+      "confirmed": "Confirmée",
+      "pending": "En attente",
+      "completed": "Terminée",
+      "canceled": "Annulée"
+    },
     "form": {
-      "customerName": "Nom du client",
-      "clockIn": "Entrée",
-      "clockOut": "Sortie",
+      "customerName": "Nom du Client",
+      "customerNameRequired": "Le nom du client est requis",
+      "mobileNumber": "Numéro de Mobile",
+      "mobileNumberRequired": "Le numéro de mobile est requis",
+      "clockIn": "Arrivée",
+      "clockOut": "Départ",
+      "date": "Date",
+      "dateRequired": "La date est requise",
+      "time": "Heure",
+      "timeRequired": "L'heure est requise",
       "status": "Statut",
-      "mobileNumber": "Numéro de mobile",
-      "notes": "Remarques",
+      "statusRequired": "Le statut est requis",
+      "notes": "Notes",
+      "actions": "Actions",
+      "customerInfo": "Informations Client",
+      "bookingDetails": "Détails de la Réservation",
+      "roomSelection": "Sélection de Chambre",
+      "roomInfo": "Informations sur la Chambre",
+      "selectRoom": "Sélectionner une Chambre",
+      "roomRequired": "La sélection d'une chambre est requise",
+      "loadingRooms": "Chargement des chambres disponibles...",
+      "noRoomsAvailable": "Aucune chambre disponible pour ces dates",
+      "additionalInfo": "Informations Supplémentaires",
+      "nightlyRate": "Tarif par Nuit",
+      "totalPrice": "Prix Total"
+    },
+    "action": {
+      "cancel": "Annuler",
+      "update": "Mettre à jour la Réservation",
+      "create": "Créer une Réservation"
+    }
+  },
+  "room": {
+    "title": "Chambres",
+    "create": "Créer une Chambre",
+    "edit": "Modifier la Chambre",
+    "filter": "Filtrer",
+    "search": "Rechercher des chambres",
+    "filter-by": "Filtrer par Type de Chambre",
+    "add": "Ajouter une Chambre",
+    "form": {
+      "name": "Nom de la Chambre",
+      "nameRequired": "Le nom de la chambre est requis",
+      "roomNumber": "Numéro de Chambre",
+      "roomNumberRequired": "Le numéro de chambre est requis",
+      "roomType": "Type de Chambre",
+      "roomTypeRequired": "Le type de chambre est requis",
+      "capacity": "Capacité",
+      "capacityRequired": "La capacité est requise",
+      "capacityMin": "La capacité doit être d'au moins 1",
+      "pricePerNight": "Prix par Nuit",
+      "priceRequired": "Le prix est requis",
+      "priceMin": "Le prix doit être un nombre positif",
+      "status": "Statut",
+      "statusRequired": "Le statut est requis",
+      "description": "Description",
+      "amenities": "Équipements",
+      "addAmenity": "Ajouter un équipement",
       "actions": "Actions"
     },
     "action": {
       "cancel": "Annuler",
-      "booking": "Réservation"
+      "room": "Chambre",
+      "update": "Mettre à jour la Chambre",
+      "create": "Créer une Chambre"
     },
-    "list": {
-      "customerName": "Nom du client",
-      "date": "Date",
-      "duration": "Durée",
-      "status": "Statut"
+    "status": {
+      "available": "Disponible",
+      "occupied": "Occupée",
+      "maintenance": "En maintenance"
+    },
+    "types": {
+      "single": "Simple",
+      "double": "Double",
+      "suite": "Suite",
+      "deluxe": "Luxe",
+      "family": "Familiale"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Bienvenue",
+      "subtitle": "Connectez-vous à votre compte",
+      "email": "Email",
+      "emailRequired": "L'email est requis",
+      "emailInvalid": "Veuillez entrer un email valide",
+      "password": "Mot de passe",
+      "passwordRequired": "Le mot de passe est requis",
+      "passwordMinLength": "Le mot de passe doit contenir au moins 6 caractères",
+      "rememberMe": "Se souvenir de moi",
+      "forgotPassword": "Mot de passe oublié ?",
+      "signIn": "Se Connecter",
+      "noAccount": "Vous n'avez pas de compte ?",
+      "signUp": "S'inscrire"
+    },
+    "register": {
+      "title": "Créer un Compte",
+      "subtitle": "Rejoignez notre plateforme de gestion hôtelière",
+      "firstName": "Prénom",
+      "firstNameRequired": "Le prénom est requis",
+      "lastName": "Nom",
+      "lastNameRequired": "Le nom est requis",
+      "username": "Nom d'utilisateur",
+      "usernameRequired": "Le nom d'utilisateur est requis",
+      "usernameMinLength": "Le nom d'utilisateur doit contenir au moins 3 caractères",
+      "email": "Email",
+      "emailRequired": "L'email est requis",
+      "emailInvalid": "Veuillez entrer un email valide",
+      "password": "Mot de passe",
+      "passwordRequired": "Le mot de passe est requis",
+      "passwordMinLength": "Le mot de passe doit contenir au moins 6 caractères",
+      "confirmPassword": "Confirmer le Mot de passe",
+      "confirmPasswordRequired": "Veuillez confirmer votre mot de passe",
+      "passwordMismatch": "Les mots de passe ne correspondent pas",
+      "termsAccepted": "J'accepte les Conditions d'Utilisation et la Politique de Confidentialité",
+      "termsRequired": "Vous devez accepter les conditions pour continuer",
+      "signUp": "S'inscrire",
+      "haveAccount": "Vous avez déjà un compte ?",
+      "signIn": "Se connecter"
     }
   }
 }

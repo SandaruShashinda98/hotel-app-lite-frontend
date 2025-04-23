@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IBooking } from './booking.model';
+import { IRoom } from '../rooms/rooms.service';
 
 @Injectable({
   providedIn: 'root',
@@ -33,5 +34,16 @@ export class BookingService {
 
   deleteBooking(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  getAvailableRooms(checkIn: Date, checkOut: Date): Observable<{ data: IRoom[]; count: number }> {
+    const params = {
+      checkIn: checkIn.toISOString(),
+      checkOut: checkOut.toISOString(),
+    };
+    
+    return this.http.get<{ data: IRoom[]; count: number }>(`${this.apiUrl}/available-rooms`, { 
+      params 
+    });
   }
 }

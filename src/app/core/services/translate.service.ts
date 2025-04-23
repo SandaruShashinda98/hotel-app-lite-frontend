@@ -21,6 +21,7 @@ export class TranslationService {
     { code: 'es', name: 'Español', flag: '🇪🇸' },
     { code: 'fr', name: 'Français', flag: '🇫🇷' },
     { code: 'si', name: 'සිංහල', flag: '🇱🇰' },
+    { code: 'ta', name: 'தமிழ்', flag: '🇮🇳' },
   ];
 
   constructor() {

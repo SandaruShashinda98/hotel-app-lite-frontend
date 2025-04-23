@@ -24,7 +24,6 @@
   </div>
 
   <div class="px-6 max-w-xl mx-auto">
-
     <div class="flex items-center my-6">
       <div class="w-1 h-8 bg-indigo-500 rounded-full mr-3"></div>
       <h1 class="text-2xl font-bold text-gray-800 tracking-tight">
@@ -82,7 +81,11 @@
           [disabled]="userForm.invalid"
           class="bg-blue-600"
         >
-          {{ isEditMode ? "Update" : "Create" }} User
+          {{
+            isEditMode
+              ? ("user.action.update" | translate)
+              : ("user.action.create" | translate)
+          }}
         </button>
       </div>
     </form>

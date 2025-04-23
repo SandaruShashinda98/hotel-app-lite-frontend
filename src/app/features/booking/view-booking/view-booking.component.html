@@ -1,4 +1,4 @@
-<div lass="bg-gradient-to-r from-blue-100 to-indigo-200 p-0 m-0 h-[100vh]">
+<div class="bg-gradient-to-r from-blue-100 to-indigo-200 p-0 m-0 h-[100vh]">
   <div
     class="bg-gradient-to-r from-blue-300 to-indigo-400 shadow-lg p-4 mb-4"
   >
@@ -35,12 +35,14 @@
         </button>
 
         <button
-        class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-md p-3 transition-all duration-300 flex items-center"
-        (click)="onRoomsClick()"
-      >
-        <mat-icon class="mr-1">meeting_room</mat-icon>
-        <span class="hidden sm:inline">{{ "common.rooms" | translate }}</span>
-      </button>
+          class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-md p-3 transition-all duration-300 flex items-center"
+          (click)="onRoomsClick()"
+        >
+          <mat-icon class="mr-1">meeting_room</mat-icon>
+          <span class="hidden sm:inline">{{
+            "common.rooms" | translate
+          }}</span>
+        </button>
       </div>
 
       <!-- Right side with logout and language -->
@@ -65,35 +67,32 @@
     <div class="flex items-center my-6">
       <div class="w-1 h-8 bg-indigo-500 rounded-full mr-3"></div>
       <h1 class="text-2xl font-bold text-gray-800 tracking-tight">
-        {{ "booking.title" | translate }}
+        {{ "common.bookings" | translate }}
       </h1>
     </div>
 
     <!-- filters -->
     <div
-      class="flex justify-between items-start gap-4 mb-4 px-4 pt-5 bg-white rounded-lg shadow-sm border border-gray-100"
+      class="flex justify-between flex-wrap items-start gap-4 mb-4 px-4 pt-5 pb-3 bg-white rounded-lg shadow-sm border border-gray-100"
     >
       <!-- Search input with icon -->
-      <mat-form-field appearance="outline" class="w-[35%]">
+      <mat-form-field appearance="outline" class="w-full md:w-[30%]">
         <mat-icon matPrefix class="text-gray-400 mr-2">search</mat-icon>
         <input
           matInput
           [formControl]="filterControl"
-          [placeholder]="'search'"
+          [placeholder]="'booking.search' | translate"
         />
       </mat-form-field>
 
-      <!-- Filter dropdown with styled options -->
-      <mat-form-field appearance="outline" class="p-0 m-0 w-[35%]">
+      <!-- Filter dropdown for booking source -->
+      <mat-form-field appearance="outline" class="w-full md:w-[25%]">
         <mat-select
           [formControl]="filterControlSite"
-          [placeholder]="'user.filter-by' | translate"
-          class="p-0 m-0"
+          [placeholder]="'booking.filter-by' | translate"
         >
-          <mat-option value="ALL" class="py-2">All</mat-option>
-          <mat-option value="DIRECT_BOOKINGS" class="py-2"
-            >Direct Bookings</mat-option
-          >
+          <mat-option value="" class="py-2">All Sources</mat-option>
+          <mat-option value="DIRECT_BOOKINGS" class="py-2">Direct Bookings</mat-option>
           <mat-option value="BOOKING_COM" class="py-2">Booking.com</mat-option>
           <mat-option value="AGODA" class="py-2">Agoda</mat-option>
           <mat-option value="AIRBNB" class="py-2">Airbnb</mat-option>
@@ -101,86 +100,145 @@
         </mat-select>
       </mat-form-field>
 
+      <!-- Filter dropdown for booking status -->
+      <mat-form-field appearance="outline" class="w-full md:w-[25%]">
+        <mat-select
+          [formControl]="filterControlStatus"
+          [placeholder]="'booking.form.status' | translate"
+        >
+          <mat-option value="" class="py-2">All Statuses</mat-option>
+          <mat-option value="pending" class="py-2">{{ "booking.status.pending" | translate }}</mat-option>
+          <mat-option value="confirmed" class="py-2">{{ "booking.status.confirmed" | translate }}</mat-option>
+          <mat-option value="completed" class="py-2">{{ "booking.status.completed" | translate }}</mat-option>
+          <mat-option value="canceled" class="py-2">{{ "booking.status.canceled" | translate }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
       <!-- Add button with hover effect -->
       <button
         [routerLink]="['new']"
-        class="p-3 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 rounded-md shadow-md hover:shadow-lg transition-all duration-300"
+        class="p-3 md:mt-0 w-full md:w-auto bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white rounded-md shadow-md hover:shadow-lg transition-all duration-300"
       >
+        <mat-icon class="mr-1 align-middle">add</mat-icon>
         {{ "booking.add" | translate }}
       </button>
     </div>
 
     @if(loading()){
-    <div class="flex justify-center items-center">
+    <div class="flex justify-center items-center py-10">
       <mat-spinner></mat-spinner>
     </div>
-    } @if(!loading()){
-    <table mat-table [dataSource]="bookings()" class="w-full" matSort>
-      <ng-container matColumnDef="customer_name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{ "booking.form.customerName" | translate }}
-        </th>
-        <td mat-cell *matCellDef="let booking">{{ booking.customer_name }}</td>
-      </ng-container>
+    } @if(!loading() && bookings().length === 0){
+    <div class="bg-white p-10 rounded-lg text-center">
+      <mat-icon class="text-gray-400 text-6xl mb-4">hotel</mat-icon>
+      <h2 class="text-xl font-medium text-gray-600 mb-2">No bookings found</h2>
+      <p class="text-gray-500 mb-4">Try changing your search filters or create a new booking.</p>
+      <button
+        [routerLink]="['new']"
+        class="p-3 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white rounded-md shadow-md hover:shadow-lg transition-all duration-300"
+      >
+        <mat-icon class="mr-1 align-middle">add</mat-icon>
+        {{ "booking.add" | translate }}
+      </button>
+    </div>
+    } @if(!loading() && bookings().length > 0){
+    <div class="overflow-x-auto bg-white rounded-lg shadow">
+      <table mat-table [dataSource]="bookings()" class="w-full" matSort>
+        <ng-container matColumnDef="customer_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="px-4 py-3 bg-gray-50 text-gray-700 font-semibold">
+            {{ "booking.form.customerName" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let booking" class="px-4 py-3 border-t">
+            <div class="font-medium">{{ booking.customer_name }}</div>
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="mobile_number">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{ "booking.form.mobileNumber" | translate }}
-        </th>
-        <td mat-cell *matCellDef="let booking">{{ booking.mobile_number }}</td>
-      </ng-container>
+        <ng-container matColumnDef="mobile_number">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="px-4 py-3 bg-gray-50 text-gray-700 font-semibold">
+            {{ "booking.form.mobileNumber" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let booking" class="px-4 py-3 border-t">{{ booking.mobile_number }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="clock_in">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{ "booking.form.clockIn" | translate }}
-        </th>
-        <td mat-cell *matCellDef="let booking">
-          {{ booking.clock_in | date }}
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="room_info">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="px-4 py-3 bg-gray-50 text-gray-700 font-semibold">
+            {{ "booking.form.roomInfo" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let booking" class="px-4 py-3 border-t">
+            <div *ngIf="booking.room.name">
+              <div class="font-medium">{{ booking.room.name }} ({{ booking.room.room_number }})</div>
+              <div class="text-sm text-gray-500">{{ booking.room.room_type }}</div>
+              <div class="text-sm text-blue-600 font-medium">Rs. {{ booking.room.price_per_night  }}</div>
+            </div>
+            <div *ngIf="!booking.room" class="text-gray-500">No room info</div>
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="clock_out">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{ "booking.form.clockOut" | translate }}
-        </th>
-        <td mat-cell *matCellDef="let booking">
-          {{ booking.clock_out | date }}
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="clock_in">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="px-4 py-3 bg-gray-50 text-gray-700 font-semibold">
+            {{ "booking.form.clockIn" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let booking" class="px-4 py-3 border-t">
+            {{ booking.clock_in | date }}
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{ "booking.form.status" | translate }}
-        </th>
-        <td mat-cell *matCellDef="let booking">
-          <span [class]="getStatusClass(booking.status)">
-            {{ booking.status }}
-          </span>
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="clock_out">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="px-4 py-3 bg-gray-50 text-gray-700 font-semibold">
+            {{ "booking.form.clockOut" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let booking" class="px-4 py-3 border-t">
+            {{ booking.clock_out | date }}
+            <div class="text-sm text-gray-500">
+              {{ formatDateRange(booking.clock_in, booking.clock_out) }}
+            </div>
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ "booking.form.actions" | translate }}
-        </th>
-        <td mat-cell *matCellDef="let booking">
-          <button mat-icon-button [routerLink]="[booking._id, 'edit']">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button
-            mat-icon-button
-            color="warn"
-            (click)="deleteBooking(booking._id)"
-          >
-            <mat-icon>delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="px-4 py-3 bg-gray-50 text-gray-700 font-semibold">
+            {{ "booking.form.status" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let booking" class="px-4 py-3 border-t">
+            <span [class]="getStatusClass(booking.status)">
+              {{ "booking.status." + booking.status | translate }}
+            </span>
+          </td>
+        </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-    }
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="px-4 py-3 bg-gray-50 text-gray-700 font-semibold text-right">
+            {{ "booking.form.actions" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let booking" class="px-4 py-3 border-t text-right">
+            <button 
+              mat-icon-button 
+              [routerLink]="[booking._id, 'edit']"
+              class="text-blue-600 hover:text-blue-800"
+              matTooltip="Edit booking"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="warn"
+              (click)="deleteBooking(booking._id)"
+              class="text-red-600 hover:text-red-800"
+              matTooltip="Delete booking"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr 
+          mat-row 
+          *matRowDef="let row; columns: displayedColumns"
+          class="hover:bg-gray-50 transition-colors duration-150"
+        ></tr>
+      </table>
+    </div>
 
     <mat-paginator
       [length]="totalItems()"
@@ -191,5 +249,6 @@
       class="mt-4 bg-gradient-to-r from-blue-100 to-indigo-200"
     >
     </mat-paginator>
+    }
   </div>
 </div>
