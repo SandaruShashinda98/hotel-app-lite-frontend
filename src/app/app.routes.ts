@@ -17,6 +17,11 @@ export const routes: Routes = [
       import('./features/users/users.routes').then((m) => m.USERS_ROUTES),
   },
   {
+    path: 'rooms',
+    loadChildren: () =>
+      import('./features/rooms/rooms.routes').then((m) => m.ROOM_ROUTES),
+  },
+  {
     path: '',
     redirectTo: 'bookings',
     pathMatch: 'full',

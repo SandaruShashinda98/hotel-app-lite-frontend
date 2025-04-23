@@ -1,126 +1,113 @@
-<div class="flex justify-between pt-2 mb-2 px-4 bg-blue-300">
-  <button mat-fab color="primary" (click)="onBackClick()">
-    <mat-icon>arrow_back</mat-icon>
-  </button>
-  <button
-    mat-raised-button
-    color="primary"
-    class="mt-2"
-    (click)="onCalenderClick()"
-  >
-    <mat-icon>calendar_today</mat-icon>
-    {{ "common.calender" | translate }}
-  </button>
-  <button
-    mat-raised-button
-    color="primary"
-    class="mt-2"
-    (click)="onUserClick()"
-  >
-    <mat-icon>supervised_user_circle</mat-icon>
-    {{ "common.users" | translate }}
-  </button>
-  <button
-    mat-raised-button
-    color="primary"
-    class="mt-2"
-    (click)="onBookingClick()"
-  >
-    <mat-icon>hotel</mat-icon> {{ "common.bookings" | translate }}
-  </button>
-  <button
-    mat-raised-button
-    color="accent"
-    class="mt-2"
-    (click)="onLogoutClick()"
-  >
-    <mat-icon>exit_to_app</mat-icon> {{ "common.logout" | translate }}
-  </button>
-
-  <app-language-selector />
-</div>
-
-<div class="px-6 max-w-2xl mx-auto">
-  <h1 class="text-2xl font-bold mb-6">
-    @if(isEditMode){
-    {{ "common.edit-booking" | translate }}
-    }@else {
-    {{ "common.create-booking" | translate }}
-    }
-  </h1>
-
-  <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" class="space-y-4">
-    <mat-form-field class="w-full">
-      <mat-label> {{ "booking.form.customerName" | translate }}</mat-label>
-      <input matInput formControlName="customer_name" required />
-      @if (bookingForm.get('customer_name')?.hasError('required')) {
-      <mat-error>Customer name is required</mat-error>
-      }
-    </mat-form-field>
-
-    <mat-form-field class="w-full">
-      <mat-label>{{ "booking.form.mobileNumber" | translate }}</mat-label>
-      <input matInput formControlName="mobile_number" required />
-    </mat-form-field>
-
-    <mat-form-field class="w-full">
-      <mat-label> {{ "booking.form.clockIn" | translate }}</mat-label>
-      <input
-        matInput
-        [matDatepicker]="picker_clock_in"
-        formControlName="clock_in"
-        required
-      />
-      <mat-datepicker-toggle
-        matIconSuffix
-        [for]="picker_clock_in"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #picker_clock_in></mat-datepicker>
-    </mat-form-field>
-
-    <mat-form-field class="w-full">
-      <mat-label> {{ "booking.form.clockOut" | translate }}</mat-label>
-      <input
-        matInput
-        [matDatepicker]="picker_clock_out"
-        formControlName="clock_out"
-        required
-      />
-      <mat-datepicker-toggle
-        matIconSuffix
-        [for]="picker_clock_out"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #picker_clock_out></mat-datepicker>
-    </mat-form-field>
-
-    <mat-form-field class="w-full">
-      <mat-label> {{ "booking.form.status" | translate }}</mat-label>
-      <mat-select formControlName="status" required>
-        <mat-option value="pending">Pending</mat-option>
-        <mat-option value="confirmed">Confirmed</mat-option>
-        <mat-option value="cancelled">Cancelled</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="w-full">
-      <mat-label>{{ "booking.form.notes" | translate }}</mat-label>
-      <textarea matInput formControlName="notes" rows="2"></textarea>
-    </mat-form-field>
-
-    <div class="flex justify-end space-x-4">
-      <button mat-button type="button" (click)="goBack()">
-        {{ "booking.action.cancel" | translate }}
+<div lass="bg-gradient-to-r from-blue-100 to-indigo-200 p-0 m-0 h-[100vh]">
+  <div class="bg-gradient-to-r from-blue-300 to-indigo-400 shadow-lg p-4 mb-6">
+    <div class="flex items-center justify-between">
+      <!-- Back button with more subtle styling -->
+      <button mat-mini-fab color="primary" (click)="onBackClick()">
+        <mat-icon>arrow_back</mat-icon>
       </button>
-      <button
-        mat-raised-button
-        color="primary"
-        type="submit"
-        [disabled]="bookingForm.invalid"
-        class="bg-blue-600"
-      >
-        {{ isEditMode ? "Update" : "Create" }}
-        {{ "booking.action.booking" | translate }}
-      </button>
+
+      <!-- Right side with logout and language -->
+      <div class="flex items-center space-x-2">
+        <app-language-selector class="mr-4" />
+
+        <button
+          class="bg-red-500 hover:bg-red-600 text-white rounded-md p-3 transition-all duration-300 flex items-center"
+          (click)="onLogoutClick()"
+        >
+          <mat-icon class="mr-1">exit_to_app</mat-icon>
+          <span class="hidden sm:inline">{{
+            "common.logout" | translate
+          }}</span>
+        </button>
+      </div>
     </div>
-  </form>
+  </div>
+
+  <div class="px-6 max-w-xl mx-auto">
+    <div class="flex items-center my-6">
+      <div class="w-1 h-8 bg-indigo-500 rounded-full mr-3"></div>
+      <h1 class="text-2xl font-bold text-gray-800 tracking-tight">
+        @if(isEditMode){
+        {{ "common.edit-booking" | translate }}
+        }@else {
+        {{ "common.create-booking" | translate }}
+        }
+      </h1>
+    </div>
+
+    <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" class="space-y-2">
+      <mat-form-field class="w-full">
+        <mat-label> {{ "booking.form.customerName" | translate }}</mat-label>
+        <input matInput formControlName="customer_name" required />
+        @if (bookingForm.get('customer_name')?.hasError('required')) {
+        <mat-error>Customer name is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label>{{ "booking.form.mobileNumber" | translate }}</mat-label>
+        <input matInput formControlName="mobile_number" required />
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label> {{ "booking.form.clockIn" | translate }}</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker_clock_in"
+          formControlName="clock_in"
+          required
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker_clock_in"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker_clock_in></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label> {{ "booking.form.clockOut" | translate }}</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker_clock_out"
+          formControlName="clock_out"
+          required
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker_clock_out"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker_clock_out></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label> {{ "booking.form.status" | translate }}</mat-label>
+        <mat-select formControlName="status" required>
+          <mat-option value="pending">Pending</mat-option>
+          <mat-option value="confirmed">Confirmed</mat-option>
+          <mat-option value="cancelled">Cancelled</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label>{{ "booking.form.notes" | translate }}</mat-label>
+        <textarea matInput formControlName="notes" rows="2"></textarea>
+      </mat-form-field>
+
+      <div class="flex justify-end space-x-4">
+        <button mat-button type="button" (click)="goBack()">
+          {{ "booking.action.cancel" | translate }}
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="bookingForm.invalid"
+          class="bg-blue-600"
+        >
+          {{ isEditMode ? "Update" : "Create" }}
+          {{ "booking.action.booking" | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

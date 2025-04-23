@@ -8,8 +8,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { BookingService } from '../booking.service';
-import { IBooking } from '../booking.model';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { TranslatePipe } from '../../../core/pipes/translate.pipe';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -17,9 +15,10 @@ import { AuthService } from '../../auth/auth.service';
 import { Location, CommonModule } from '@angular/common';
 import { LanguageSelectorComponent } from '../../../shared/components/language-selector/language-selector.component';
 import { MatSelectModule } from '@angular/material/select';
+import { IRoom, RoomService } from '../rooms.service';
 
 @Component({
-  selector: 'app-view-booking',
+  selector: 'app-view-rooms',
   standalone: true,
   imports: [
     CommonModule,
@@ -37,26 +36,27 @@ import { MatSelectModule } from '@angular/material/select';
     MatProgressSpinnerModule,
     LanguageSelectorComponent,
   ],
-  templateUrl: './view-booking.component.html',
-  styleUrl: './view-booking.component.scss',
+  templateUrl: './view-rooms.component.html',
+  styleUrl: './view-rooms.component.scss',
 })
-export class ViewBookingComponent {
-  private readonly bookingService = inject(BookingService);
+export class ViewRoomsComponent {
+  private readonly roomService = inject(RoomService);
   private readonly router = inject(Router);
   readonly route = inject(ActivatedRoute);
   private readonly activatedRouter = inject(ActivatedRoute);
   private readonly authService = inject(AuthService);
 
-  bookings = signal<IBooking[]>([]);
+  rooms = signal<IRoom[]>([]);
   loading = signal<boolean>(false);
   filterControl = new FormControl('');
-  filterControlSite = new FormControl('');
+  filterControlType = new FormControl('');
   totalItems = signal<number>(0);
   displayedColumns = [
-    'customer_name',
-    'mobile_number',
-    'clock_in',
-    'clock_out',
+    'name',
+    'room_number',
+    'room_type',
+    'capacity',
+    'price_per_night',
     'status',
     'actions',
   ];
@@ -67,6 +67,12 @@ export class ViewBookingComponent {
       .subscribe((value) => {
         this.updateQueryParams({ searchKey: value, start: 1 });
       });
+
+    this.filterControlType.valueChanges
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe((value) => {
+        this.updateQueryParams({ roomType: value, start: 1 });
+      });
   }
 
   ngOnInit() {
@@ -74,24 +80,27 @@ export class ViewBookingComponent {
       const size = Number(params['size']) || 10;
       const start = Number(params['start']) || 1;
       const searchKey = params['searchKey'] || '';
+      const roomType = params['roomType'] || '';
 
       this.filterControl.setValue(searchKey, { emitEvent: false });
-      this.loadBookings({ size, start, searchKey });
+      this.filterControlType.setValue(roomType, { emitEvent: false });
+      this.loadRooms({ size, start, searchKey, roomType });
     });
   }
 
-  loadBookings(filters: { size?: number; start?: number; searchKey?: string }) {
+  loadRooms(filters: { size?: number; start?: number; searchKey?: string; roomType?: string }) {
     this.loading.set(true);
 
     const params = {
       size: filters.size || 10,
       start: filters.start || 1,
       searchKey: filters.searchKey || '',
+      roomType: filters.roomType || '',
     };
 
-    this.bookingService.getBookings(params).subscribe({
+    this.roomService.getRooms(params).subscribe({
       next: (res) => {
-        this.bookings.set(res.data);
+        this.rooms.set(res.data);
         this.totalItems.set(res.count);
         this.loading.set(false);
       },
@@ -114,11 +123,11 @@ export class ViewBookingComponent {
     });
   }
 
-  deleteBooking(id: number) {
-    if (confirm('Are you sure you want to delete this booking?')) {
-      this.bookingService.deleteBooking(id).subscribe(() => {
+  deleteRoom(id: number) {
+    if (confirm('Are you sure you want to delete this room?')) {
+      this.roomService.deleteRoom(id).subscribe(() => {
         const currentParams = this.route.snapshot.queryParams;
-        this.loadBookings(currentParams);
+        this.loadRooms(currentParams);
       });
     }
   }
@@ -126,32 +135,34 @@ export class ViewBookingComponent {
   getStatusClass(status: string): string {
     const baseClasses = 'px-2 py-1 rounded-full text-xs font-medium';
     switch (status) {
-      case 'confirmed':
+      case 'available':
         return `${baseClasses} bg-green-100 text-green-800`;
-      case 'pending':
+      case 'occupied':
+        return `${baseClasses} bg-blue-100 text-blue-800`;
+      case 'maintenance':
         return `${baseClasses} bg-yellow-100 text-yellow-800`;
-      case 'cancelled':
-        return `${baseClasses} bg-red-100 text-red-800`;
       default:
         return baseClasses;
     }
   }
 
-  //-------------------
-
+  // Navigation methods
   onBackClick() {
     this.location.back();
   }
+  
   onCalenderClick() {
     this.router.navigate(['/bookings']);
   }
+  
   onUserClick() {
     this.router.navigate(['/users']);
   }
+  
   onBookingClick() {
     this.router.navigate(['/bookings/view']);
   }
-
+  
   onRoomsClick() {
     this.router.navigate(['/rooms']);
   }

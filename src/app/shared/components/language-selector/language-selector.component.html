@@ -1,12 +1,19 @@
-<mat-form-field appearance="outline" class="w-52">
-  <mat-select
-    [value]="translationService.currentLang()"
-    (selectionChange)="onLanguageChange($event.value)"
-  >
-    @for (lang of translationService.supportedLanguages; track lang.code) {
-    <mat-option [value]="lang.code">
-      {{ lang.flag }} {{ lang.name }}
+<mat-select
+  [value]="translationService.currentLang()"
+  (selectionChange)="onLanguageChange($event.value)"
+  class="h-12 text-center rounded-lg shadow-md bg-indigo-500 bg-opacity-80 text-white border-0 p-4"
+  panelClass="language-select-panel"
+>
+  @for (lang of translationService.supportedLanguages; track lang.code) {
+    <mat-option 
+      [value]="lang.code" 
+      class="p-3 m-2 flex items-center gap-4 hover:bg-gray-100"
+      [class.selected-language]="lang.code === translationService.currentLang()"
+    >
+      <span class="text-xl">{{ lang.flag }}</span>
+      <span class="font-medium text-gray-800">{{ lang.name }}</span>
+      <span class="ml-auto text-pink-500" *ngIf="lang.code === translationService.currentLang()">
+      </span>
     </mat-option>
-    }
-  </mat-select>
-</mat-form-field>
+  }
+</mat-select>

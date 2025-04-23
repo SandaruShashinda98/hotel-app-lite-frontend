@@ -3,12 +3,12 @@
     "calender": "Calender",
     "users": "Users",
     "bookings": "Bookings",
+    "rooms": "Rooms",
     "logout": "Logout",
     "edit-booking": "Edit Booking",
     "create-booking": "New Booking",
     "edit-user": "Edit User",
     "create-user": "New User",
-
     "update": "Update",
     "filter": "Filter",
     "search": "Search",
@@ -64,6 +64,35 @@
       "date": "Date",
       "duration": "Duration",
       "status": "Status"
+    }
+  },
+  "room": {
+    "title": "Rooms",
+    "create": "Create Room",
+    "edit": "Edit Room",
+    "filter": "Filter",
+    "search": "Search rooms",
+    "filter-by": "Filter By Room Type",
+    "add": "Add Room",
+    "form": {
+      "name": "Room Name",
+      "nameRequired": "Room name is required",
+      "roomNumber": "Room Number",
+      "roomNumberRequired": "Room number is required",
+      "roomType": "Room Type",
+      "roomTypeRequired": "Room type is required",
+      "capacity": "Capacity",
+      "capacityRequired": "Capacity is required",
+      "capacityMin": "Capacity must be at least 1",
+      "pricePerNight": "Price Per Night",
+      "priceRequired": "Price is required",
+      "priceMin": "Price must be a positive number",
+      "status": "Status",
+      "statusRequired": "Status is required",
+      "description": "Description",
+      "amenities": "Amenities",
+      "addAmenity": "Add amenity",
+      "actions": "Actions"
     }
   }
 }

@@ -1,11 +1,6 @@
-<div lass="bg-gradient-to-r from-blue-100 to-indigo-200 p-0 m-0 h-[100vh]">
-  <div class="bg-gradient-to-r from-blue-300 to-indigo-400 shadow-lg p-4 mb-6">
+<div class="bg-gradient-to-r from-blue-100 to-indigo-200 p-0 m-0 h-[100vh]">
+  <div class="bg-gradient-to-r from-blue-300 to-indigo-400 shadow-lg p-4 mb-4">
     <div class="flex items-center justify-between">
-      <!-- Back button with more subtle styling -->
-      <!-- <button mat-mini-fab color="primary" (click)="onBackClick()">
-        <mat-icon>arrow_back</mat-icon>
-      </button> -->
-
       <!-- Center navigation section -->
       <div class="flex space-x-6">
         <button
@@ -67,7 +62,7 @@
     <div class="flex items-center my-6">
       <div class="w-1 h-8 bg-indigo-500 rounded-full mr-3"></div>
       <h1 class="text-2xl font-bold text-gray-800 tracking-tight">
-        {{ "user.title" | translate }}
+        {{ "room.title" | translate }}
       </h1>
     </div>
 
@@ -75,13 +70,30 @@
     <div
       class="flex justify-between items-start gap-4 mb-4 px-4 pt-5 bg-white rounded-lg shadow-sm border border-gray-100"
     >
-      <mat-form-field appearance="outline" class="w-[30%]">
+      <!-- Search input with icon -->
+      <mat-form-field appearance="outline" class="w-[35%]">
         <mat-icon matPrefix class="text-gray-400 mr-2">search</mat-icon>
         <input
           matInput
           [formControl]="filterControl"
-          [placeholder]="'user.search' | translate"
+          [placeholder]="'search'"
         />
+      </mat-form-field>
+
+      <!-- Filter dropdown with styled options -->
+      <mat-form-field appearance="outline" class="p-0 m-0 w-[35%]">
+        <mat-select
+          [formControl]="filterControlType"
+          [placeholder]="'room.filter-by' | translate"
+          class="p-0 m-0"
+        >
+          <mat-option value="" class="py-2">All Types</mat-option>
+          <mat-option value="SINGLE" class="py-2">Single</mat-option>
+          <mat-option value="DOUBLE" class="py-2">Double</mat-option>
+          <mat-option value="SUITE" class="py-2">Suite</mat-option>
+          <mat-option value="DELUXE" class="py-2">Deluxe</mat-option>
+          <mat-option value="FAMILY" class="py-2">Family</mat-option>
+        </mat-select>
       </mat-form-field>
 
       <!-- Add button with hover effect -->
@@ -89,7 +101,7 @@
         [routerLink]="['new']"
         class="p-3 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 rounded-md shadow-md hover:shadow-lg transition-all duration-300"
       >
-        {{ "user.add" | translate }}
+        {{ "room.add" | translate }}
       </button>
     </div>
 
@@ -98,55 +110,64 @@
       <mat-spinner></mat-spinner>
     </div>
     } @if(!loading()){
-    <table mat-table [dataSource]="users()" class="w-full" matSort>
-      <ng-container matColumnDef="first_name">
+    <table mat-table [dataSource]="rooms()" class="w-full" matSort>
+      <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{ "user.form.firstName" | translate }}
+          {{ "room.form.name" | translate }}
         </th>
-        <td mat-cell *matCellDef="let user">{{ user.first_name }}</td>
+        <td mat-cell *matCellDef="let room">{{ room.name }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="last_name">
+      <ng-container matColumnDef="room_number">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{ "user.form.lastName" | translate }}
+          {{ "room.form.roomNumber" | translate }}
         </th>
-        <td mat-cell *matCellDef="let user">{{ user.last_name }}</td>
+        <td mat-cell *matCellDef="let room">{{ room.room_number }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="username">
+      <ng-container matColumnDef="room_type">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{ "user.form.username" | translate }}
+          {{ "room.form.roomType" | translate }}
         </th>
-        <td mat-cell *matCellDef="let user">{{ user.username }}</td>
+        <td mat-cell *matCellDef="let room">{{ room.room_type }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="role">
+      <ng-container matColumnDef="capacity">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{ "user.form.role" | translate }}
+          {{ "room.form.capacity" | translate }}
         </th>
-        <td mat-cell *matCellDef="let user">
-          <span [class]="getRoleClass(user.role_permission)">
-            {{ user.role_permission }}
+        <td mat-cell *matCellDef="let room">{{ room.capacity }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="price_per_night">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "room.form.pricePerNight" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let room">
+          {{ room.price_per_night | currency }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "room.form.status" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let room">
+          <span [class]="getStatusClass(room.status)">
+            {{ room.status }}
           </span>
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{ "user.form.email" | translate }}
-        </th>
-        <td mat-cell *matCellDef="let user">{{ user.email }}</td>
-      </ng-container>
-
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>
-          {{ "user.form.actions" | translate }}
+          {{ "room.form.actions" | translate }}
         </th>
-        <td mat-cell *matCellDef="let user">
-          <button mat-icon-button [routerLink]="[user._id, 'edit']">
+        <td mat-cell *matCellDef="let room">
+          <button mat-icon-button [routerLink]="[room._id, 'edit']">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button color="warn" (click)="deleteUser(user._id)">
+          <button mat-icon-button color="warn" (click)="deleteRoom(room._id)">
             <mat-icon>delete</mat-icon>
           </button>
         </td>

@@ -20,6 +20,7 @@ import { Location, CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { LanguageSelectorComponent } from '../../../shared/components/language-selector/language-selector.component';
 import { MatButtonModule } from '@angular/material/button';
+import { TranslatePipe } from '../../../core/pipes/translate.pipe';
 
 export const colors: any = {
   red: {
@@ -45,7 +46,8 @@ export const colors: any = {
     FormsModule,
     MatIconModule,
     LanguageSelectorComponent,
-     MatButtonModule
+    MatButtonModule,
+    TranslatePipe,
   ],
   providers: [
     provideAnimations(),
@@ -185,6 +187,10 @@ export class BookingCalendarComponent {
   }
   onBookingClick() {
     this.router.navigate(['/bookings/view']);
+  }
+
+  onRoomsClick() {
+    this.router.navigate(['/rooms']);
   }
   onLogoutClick() {
     this.authService.logout();

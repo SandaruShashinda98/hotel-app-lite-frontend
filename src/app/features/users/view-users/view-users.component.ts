@@ -148,4 +148,8 @@ export class ViewUsersComponent {
     this.authService.logout();
     this.router.navigate(['/auth']);
   }
+
+  onRoomsClick() {
+    this.router.navigate(['/rooms']);
+  }
 }

@@ -1,0 +1,15 @@
+::ng-deep .language-select-panel {
+  @apply rounded-lg shadow-lg mt-1 border-none overflow-hidden;
+}
+
+::ng-deep .language-select-panel .mat-option {
+  @apply h-14;
+}
+
+::ng-deep .language-select-panel .selected-language {
+  @apply bg-white;
+}
+
+::ng-deep .mat-select-arrow {
+  @apply text-white;
+}

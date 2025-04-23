@@ -1,155 +1,195 @@
-<div class="flex justify-between pt-2 mb-2 px-4 bg-blue-300">
-  <button mat-fab color="primary" (click)="onBackClick()">
-    <mat-icon>arrow_back</mat-icon>
-  </button>
-  <button
-    mat-raised-button
-    color="primary"
-    class="mt-2"
-    (click)="onCalenderClick()"
+<div lass="bg-gradient-to-r from-blue-100 to-indigo-200 p-0 m-0 h-[100vh]">
+  <div
+    class="bg-gradient-to-r from-blue-300 to-indigo-400 shadow-lg p-4 mb-4"
   >
-    <mat-icon>calendar_today</mat-icon>
-    {{ "common.calender" | translate }}
-  </button>
-  <button
-    mat-raised-button
-    color="primary"
-    class="mt-2"
-    (click)="onUserClick()"
-  >
-    <mat-icon>supervised_user_circle</mat-icon>
-    {{ "common.users" | translate }}
-  </button>
-  <button
-    mat-raised-button
-    color="primary"
-    class="mt-2"
-    (click)="onBookingClick()"
-  >
-    <mat-icon>hotel</mat-icon> {{ "common.bookings" | translate }}
-  </button>
-  <button
-    mat-raised-button
-    color="accent"
-    class="mt-2"
-    (click)="onLogoutClick()"
-  >
-    <mat-icon>exit_to_app</mat-icon> {{ "common.logout" | translate }}
-  </button>
+    <div class="flex items-center justify-between">
 
-  <app-language-selector />
-</div>
-
-<div class="px-6">
-  <div class="flex justify-between items-center mb-6">
-    <h1 class="text-2xl font-bold">{{ "booking.title" | translate }}</h1>
-  </div>
-
-  <div class="flex justify-between items-center mb-6">
-    <mat-form-field class="w-[30%]">
-      <mat-label> {{ "booking.filter" | translate }}</mat-label>
-      <input
-        matInput
-        [formControl]="filterControl"
-        [placeholder]="'search..'"
-      />
-    </mat-form-field>
-    <mat-form-field class="w-[30%]">
-      <mat-label>{{ "user.filter-by" | translate }}</mat-label>
-      <mat-select [formControl]="filterControlSite">
-        <mat-option value="ALL">All</mat-option>
-        <mat-option value="DIRECT_BOOKINGS">Direct Bookings</mat-option>
-        <mat-option value="BOOKING_COM">Booking.com</mat-option>
-        <mat-option value="AGODA">Agoda</mat-option>
-        <mat-option value="AIRBNB">Airbnb</mat-option>
-        <mat-option value="TRIPADVISOR">Tripadvisor</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button
-      mat-raised-button
-      color="primary"
-      [routerLink]="['new']"
-      class="bg-blue-600"
-    >
-      {{ "booking.add" | translate }}
-    </button>
-  </div>
-
-  @if(loading()){
-  <div class="flex justify-center items-center">
-    <mat-spinner></mat-spinner>
-  </div>
-  } @if(!loading()){
-  <table mat-table [dataSource]="bookings()" class="w-full" matSort>
-    <ng-container matColumnDef="customer_name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        {{ "booking.form.customerName" | translate }}
-      </th>
-      <td mat-cell *matCellDef="let booking">{{ booking.customer_name }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="mobile_number">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        {{ "booking.form.mobileNumber" | translate }}
-      </th>
-      <td mat-cell *matCellDef="let booking">{{ booking.mobile_number }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="clock_in">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        {{ "booking.form.clockIn" | translate }}
-      </th>
-      <td mat-cell *matCellDef="let booking">{{ booking.clock_in | date }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="clock_out">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        {{ "booking.form.clockOut" | translate }}
-      </th>
-      <td mat-cell *matCellDef="let booking">{{ booking.clock_out | date }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        {{ "booking.form.status" | translate }}
-      </th>
-      <td mat-cell *matCellDef="let booking">
-        <span [class]="getStatusClass(booking.status)">
-          {{ booking.status }}
-        </span>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef>
-        {{ "booking.form.actions" | translate }}
-      </th>
-      <td mat-cell *matCellDef="let booking">
-        <button mat-icon-button [routerLink]="[booking._id, 'edit']">
-          <mat-icon>edit</mat-icon>
-        </button>
+      <!-- Center navigation section -->
+      <div class="flex space-x-6">
         <button
-          mat-icon-button
-          color="warn"
-          (click)="deleteBooking(booking._id)"
+          class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-md p-3 transition-all duration-300 flex items-center"
+          (click)="onCalenderClick()"
         >
-          <mat-icon>delete</mat-icon>
+          <mat-icon class="mr-1">calendar_today</mat-icon>
+          <span class="hidden sm:inline">{{
+            "common.calender" | translate
+          }}</span>
         </button>
-      </td>
-    </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-  }
+        <button
+          class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-md p-3 transition-all duration-300 flex items-center"
+          (click)="onUserClick()"
+        >
+          <mat-icon class="mr-1">supervised_user_circle</mat-icon>
+          <span class="hidden sm:inline">{{ "common.users" | translate }}</span>
+        </button>
 
-  <mat-paginator
-    [length]="totalItems()"
-    [pageSize]="10"
-    [pageSizeOptions]="[5, 10, 25, 100]"
-    [pageIndex]="(route.snapshot.queryParams['start'] || 1) - 1"
-    (page)="onPageChange($event)"
-    class="mt-4"
-  >
-  </mat-paginator>
+        <button
+          class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-md p-3 transition-all duration-300 flex items-center"
+          (click)="onBookingClick()"
+        >
+          <mat-icon class="mr-1">hotel</mat-icon>
+          <span class="hidden sm:inline">{{
+            "common.bookings" | translate
+          }}</span>
+        </button>
+
+        <button
+        class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-md p-3 transition-all duration-300 flex items-center"
+        (click)="onRoomsClick()"
+      >
+        <mat-icon class="mr-1">meeting_room</mat-icon>
+        <span class="hidden sm:inline">{{ "common.rooms" | translate }}</span>
+      </button>
+      </div>
+
+      <!-- Right side with logout and language -->
+      <div class="flex items-center space-x-2">
+        <app-language-selector class="mr-4" />
+
+        <button
+          class="bg-red-500 hover:bg-red-600 text-white rounded-md p-3 transition-all duration-300 flex items-center"
+          (click)="onLogoutClick()"
+        >
+          <mat-icon class="mr-1">exit_to_app</mat-icon>
+          <span class="hidden sm:inline">{{
+            "common.logout" | translate
+          }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="px-6 bg-gradient-to-r from-blue-100 to-indigo-200">
+    <!-- title -->
+    <div class="flex items-center my-6">
+      <div class="w-1 h-8 bg-indigo-500 rounded-full mr-3"></div>
+      <h1 class="text-2xl font-bold text-gray-800 tracking-tight">
+        {{ "booking.title" | translate }}
+      </h1>
+    </div>
+
+    <!-- filters -->
+    <div
+      class="flex justify-between items-start gap-4 mb-4 px-4 pt-5 bg-white rounded-lg shadow-sm border border-gray-100"
+    >
+      <!-- Search input with icon -->
+      <mat-form-field appearance="outline" class="w-[35%]">
+        <mat-icon matPrefix class="text-gray-400 mr-2">search</mat-icon>
+        <input
+          matInput
+          [formControl]="filterControl"
+          [placeholder]="'search'"
+        />
+      </mat-form-field>
+
+      <!-- Filter dropdown with styled options -->
+      <mat-form-field appearance="outline" class="p-0 m-0 w-[35%]">
+        <mat-select
+          [formControl]="filterControlSite"
+          [placeholder]="'user.filter-by' | translate"
+          class="p-0 m-0"
+        >
+          <mat-option value="ALL" class="py-2">All</mat-option>
+          <mat-option value="DIRECT_BOOKINGS" class="py-2"
+            >Direct Bookings</mat-option
+          >
+          <mat-option value="BOOKING_COM" class="py-2">Booking.com</mat-option>
+          <mat-option value="AGODA" class="py-2">Agoda</mat-option>
+          <mat-option value="AIRBNB" class="py-2">Airbnb</mat-option>
+          <mat-option value="TRIPADVISOR" class="py-2">Tripadvisor</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Add button with hover effect -->
+      <button
+        [routerLink]="['new']"
+        class="p-3 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 rounded-md shadow-md hover:shadow-lg transition-all duration-300"
+      >
+        {{ "booking.add" | translate }}
+      </button>
+    </div>
+
+    @if(loading()){
+    <div class="flex justify-center items-center">
+      <mat-spinner></mat-spinner>
+    </div>
+    } @if(!loading()){
+    <table mat-table [dataSource]="bookings()" class="w-full" matSort>
+      <ng-container matColumnDef="customer_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "booking.form.customerName" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let booking">{{ booking.customer_name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="mobile_number">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "booking.form.mobileNumber" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let booking">{{ booking.mobile_number }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="clock_in">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "booking.form.clockIn" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let booking">
+          {{ booking.clock_in | date }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="clock_out">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "booking.form.clockOut" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let booking">
+          {{ booking.clock_out | date }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "booking.form.status" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let booking">
+          <span [class]="getStatusClass(booking.status)">
+            {{ booking.status }}
+          </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "booking.form.actions" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let booking">
+          <button mat-icon-button [routerLink]="[booking._id, 'edit']">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="warn"
+            (click)="deleteBooking(booking._id)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    }
+
+    <mat-paginator
+      [length]="totalItems()"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      [pageIndex]="(route.snapshot.queryParams['start'] || 1) - 1"
+      (page)="onPageChange($event)"
+      class="mt-4 bg-gradient-to-r from-blue-100 to-indigo-200"
+    >
+    </mat-paginator>
+  </div>
 </div>

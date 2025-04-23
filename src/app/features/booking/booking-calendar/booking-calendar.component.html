@@ -1,105 +1,130 @@
-<div class="flex justify-between pt-2 mb-2 px-4 bg-blue-300">
-  <button mat-fab color="primary" (click)="onBackClick()">
-    <mat-icon>arrow_back</mat-icon>
-  </button>
-  <button
-    mat-raised-button
-    color="primary"
-    class="mt-2"
-    (click)="onCalenderClick()"
-  >
-    <mat-icon>calendar_today</mat-icon> Calender
-  </button>
-  <button
-    mat-raised-button
-    color="primary"
-    class="mt-2"
-    (click)="onUserClick()"
-  >
-    <mat-icon>supervised_user_circle</mat-icon> Users
-  </button>
-  <button
-    mat-raised-button
-    color="primary"
-    class="mt-2"
-    (click)="onBookingClick()"
-  >
-    <mat-icon>hotel</mat-icon> Bookings
-  </button>
-  <button
-    mat-raised-button
-    color="accent"
-    class="mt-2"
-    (click)="onLogoutClick()"
-  >
-    <mat-icon>exit_to_app</mat-icon> Logout
-  </button>
+<div lass="bg-gradient-to-r from-blue-100 to-indigo-200 p-0 m-0 h-[100vh]">
+  <div class="bg-gradient-to-r from-blue-300 to-indigo-400 shadow-lg p-4 mb-6">
+    <div class="flex items-center justify-between">
+      <!-- Back button with more subtle styling -->
+      <!-- <button mat-mini-fab color="primary" (click)="onBackClick()">
+        <mat-icon>arrow_back</mat-icon>
+      </button> -->
 
-  <app-language-selector />
-</div>
+      <!-- Center navigation section -->
+      <div class="flex space-x-6">
+        <button
+          class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-md p-3 transition-all duration-300 flex items-center"
+          (click)="onCalenderClick()"
+        >
+          <mat-icon class="mr-1">calendar_today</mat-icon>
+          <span class="hidden sm:inline">{{
+            "common.calender" | translate
+          }}</span>
+        </button>
 
-<div class="p-4 bg-white rounded-lg shadow-md">
-  <div
-    class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6"
-  >
-    <div class="flex items-center space-x-2">
-      <button
-        (click)="decrementMonth()"
-        class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
-      >
-        <span class="material-icons">chevron_left</span>
-      </button>
+        <button
+          class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-md p-3 transition-all duration-300 flex items-center"
+          (click)="onUserClick()"
+        >
+          <mat-icon class="mr-1">supervised_user_circle</mat-icon>
+          <span class="hidden sm:inline">{{ "common.users" | translate }}</span>
+        </button>
 
-      <button
-        (click)="today()"
-        class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400"
-      >
-        Today
-      </button>
+        <button
+          class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-md p-3 transition-all duration-300 flex items-center"
+          (click)="onBookingClick()"
+        >
+          <mat-icon class="mr-1">hotel</mat-icon>
+          <span class="hidden sm:inline">{{
+            "common.bookings" | translate
+          }}</span>
+        </button>
 
-      <button
-        (click)="incrementMonth()"
-        class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
-      >
-        <span class="material-icons">chevron_right</span>
-      </button>
-    </div>
+        <button
+          class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-md p-3 transition-all duration-300 flex items-center"
+          (click)="onRoomsClick()"
+        >
+          <mat-icon class="mr-1">meeting_room</mat-icon>
+          <span class="hidden sm:inline">{{ "common.rooms" | translate }}</span>
+        </button>
+      </div>
 
-    <div class="flex items-center space-x-4">
-      <select
-        [(ngModel)]="selectedMonth"
-        (change)="monthChanged()"
-        class="px-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
-      >
-        <option *ngFor="let month of months; let i = index" [value]="i">
-          {{ month }}
-        </option>
-      </select>
+      <!-- Right side with logout and language -->
+      <div class="flex items-center space-x-2">
+        <app-language-selector class="mr-4" />
 
-      <select
-        [(ngModel)]="selectedYear"
-        (change)="yearChanged()"
-        class="px-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
-      >
-        <option *ngFor="let year of years" [value]="year">
-          {{ year }}
-        </option>
-      </select>
+        <button
+          class="bg-red-500 hover:bg-red-600 text-white rounded-md p-3 transition-all duration-300 flex items-center"
+          (click)="onLogoutClick()"
+        >
+          <mat-icon class="mr-1">exit_to_app</mat-icon>
+          <span class="hidden sm:inline">{{
+            "common.logout" | translate
+          }}</span>
+        </button>
+      </div>
     </div>
   </div>
 
-  <div
-    class="calendar-container rounded-lg overflow-hidden border border-gray-200"
-  >
-    <mwl-calendar-month-view
-      [viewDate]="viewDate"
-      [events]="events"
-      [activeDayIsOpen]="activeDayIsOpen"
-      [refresh]="refresh"
-      (dayClicked)="dayClicked($event.day)"
-      (eventClicked)="handleEventClick($event)"
-      (eventTimesChanged)="eventTimesChanged($event)"
+  <div class="p-6 m-6 bg-white rounded-lg shadow-md">
+    <div
+      class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6"
     >
-    </mwl-calendar-month-view>
+      <div class="flex items-center space-x-2">
+        <button
+          (click)="decrementMonth()"
+          class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+          <span class="material-icons">chevron_left</span>
+        </button>
+
+        <button
+          (click)="today()"
+          class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400"
+        >
+          Today
+        </button>
+
+        <button
+          (click)="incrementMonth()"
+          class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+          <span class="material-icons">chevron_right</span>
+        </button>
+      </div>
+
+      <div class="flex items-center space-x-4">
+        <select
+          [(ngModel)]="selectedMonth"
+          (change)="monthChanged()"
+          class="px-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+        >
+          <option *ngFor="let month of months; let i = index" [value]="i">
+            {{ month }}
+          </option>
+        </select>
+
+        <select
+          [(ngModel)]="selectedYear"
+          (change)="yearChanged()"
+          class="px-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+        >
+          <option *ngFor="let year of years" [value]="year">
+            {{ year }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div
+      class="calendar-container rounded-lg overflow-hidden border border-gray-200"
+    >
+      <mwl-calendar-month-view
+        [viewDate]="viewDate"
+        [events]="events"
+        [activeDayIsOpen]="activeDayIsOpen"
+        [refresh]="refresh"
+        (dayClicked)="dayClicked($event.day)"
+        (eventClicked)="handleEventClick($event)"
+        (eventTimesChanged)="eventTimesChanged($event)"
+      >
+      </mwl-calendar-month-view>
+    </div>
   </div>
 </div>
