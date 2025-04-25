@@ -50,6 +50,14 @@
               <mat-error>{{ "booking.form.customerNameRequired" | translate }}</mat-error>
             }
           </mat-form-field>
+
+          <mat-form-field class="w-full">
+            <mat-label>{{ "booking.form.email" | translate }}</mat-label>
+            <input matInput formControlName="email" required />
+            @if (bookingForm.get('email')?.hasError('required') && bookingForm.get('customer_name')?.touched) {
+              <mat-error>{{ "booking.form.email" | translate }}</mat-error>
+            }
+          </mat-form-field>
   
           <mat-form-field class="w-full">
             <mat-label>{{ "booking.form.mobileNumber" | translate }}</mat-label>

@@ -13,7 +13,7 @@
           }}</span>
         </button>
 
-        @if (isAdmin()) {
+        @if (isAdmin() || isManager()) {
         <button
           class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-md p-3 transition-all duration-300 flex items-center"
           (click)="onUserClick()"
@@ -181,6 +181,20 @@
           </td>
         </ng-container>
 
+        <ng-container matColumnDef="email">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header
+            class="px-4 py-3 bg-gray-50 text-gray-700 font-semibold"
+          >
+            {{ "booking.form.email" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let booking" class="px-4 py-3 border-t">
+            {{ booking.email }}
+          </td>
+        </ng-container>
+
         <ng-container matColumnDef="room_info">
           <th
             mat-header-cell
@@ -261,6 +275,7 @@
           >
             {{ "booking.form.actions" | translate }}
           </th>
+          @if(!isStaff()){
           <td
             mat-cell
             *matCellDef="let booking"
@@ -284,6 +299,7 @@
               <mat-icon>delete</mat-icon>
             </button>
           </td>
+          }
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

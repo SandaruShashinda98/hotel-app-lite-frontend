@@ -13,7 +13,7 @@
           }}</span>
         </button>
 
-        @if (isAdmin()) {
+        @if (!isStaff()) {
         <button
           class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-md p-3 transition-all duration-300 flex items-center"
           (click)="onUserClick()"
@@ -159,6 +159,7 @@
         </td>
       </ng-container>
 
+     @if(!isStaff()){
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>
           {{ "room.form.actions" | translate }}
@@ -172,6 +173,7 @@
           </button>
         </td>
       </ng-container>
+     }
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>

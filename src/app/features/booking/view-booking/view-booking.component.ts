@@ -53,7 +53,11 @@ export class ViewBookingComponent {
 
   bookings = signal<IBooking[]>([]);
   loading = signal<boolean>(false);
-  isAdmin = signal<boolean>(true);
+
+  isAdmin = signal<boolean>(false);
+  isStaff = signal<boolean>(false);
+  isManager = signal<boolean>(false);
+
   filterControl = new FormControl('');
   filterControlSite = new FormControl('');
   filterControlStatus = new FormControl('');
@@ -61,6 +65,7 @@ export class ViewBookingComponent {
   displayedColumns = [
     'customer_name',
     'mobile_number',
+    'email',
     'room_info',
     'clock_in',
     'clock_out',
@@ -90,9 +95,9 @@ export class ViewBookingComponent {
 
   ngOnInit() {
     const currentUser = this.authService.getCurrentUser();
-    if (currentUser.role_permission !== 'ADMIN') {
-      this.isAdmin.set(false);
-    }
+    if (currentUser.role_permission === 'ADMIN') this.isAdmin.set(true);
+    if (currentUser.role_permission === 'MANAGER') this.isManager.set(true);
+    if (currentUser.role_permission === 'STAFF') this.isStaff.set(true);
 
     this.route.queryParams.subscribe((params) => {
       const size = Number(params['size']) || 10;
@@ -104,12 +109,18 @@ export class ViewBookingComponent {
       this.filterControl.setValue(searchKey, { emitEvent: false });
       this.filterControlSite.setValue(source, { emitEvent: false });
       this.filterControlStatus.setValue(status, { emitEvent: false });
-      
+
       this.loadBookings({ size, start, searchKey, source, status });
     });
   }
 
-  loadBookings(filters: { size?: number; start?: number; searchKey?: string; source?: string; status?: string }) {
+  loadBookings(filters: {
+    size?: number;
+    start?: number;
+    searchKey?: string;
+    source?: string;
+    status?: string;
+  }) {
     this.loading.set(true);
 
     const params = {
@@ -127,9 +138,13 @@ export class ViewBookingComponent {
         this.loading.set(false);
       },
       error: (error) => {
-        this.snackBar.open('Error loading bookings: ' + error.message, 'Close', {
-          duration: 5000
-        });
+        this.snackBar.open(
+          'Error loading bookings: ' + error.message,
+          'Close',
+          {
+            duration: 5000,
+          }
+        );
         this.loading.set(false);
       },
     });
@@ -156,17 +171,21 @@ export class ViewBookingComponent {
       this.bookingService.deleteBooking(id).subscribe({
         next: () => {
           this.snackBar.open('Booking deleted successfully', 'Close', {
-            duration: 3000
+            duration: 3000,
           });
           const currentParams = this.route.snapshot.queryParams;
           this.loadBookings(currentParams);
         },
         error: (error) => {
-          this.snackBar.open('Error deleting booking: ' + error.message, 'Close', {
-            duration: 5000
-          });
+          this.snackBar.open(
+            'Error deleting booking: ' + error.message,
+            'Close',
+            {
+              duration: 5000,
+            }
+          );
           this.loading.set(false);
-        }
+        },
       });
     }
   }
@@ -190,14 +209,14 @@ export class ViewBookingComponent {
   formatDateRange(checkIn: Date, checkOut: Date): string {
     const checkInDate = new Date(checkIn);
     const checkOutDate = new Date(checkOut);
-    
+
     const nights = Math.ceil(
       (checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24)
     );
-    
+
     const checkInStr = checkInDate.toLocaleDateString();
     const checkOutStr = checkOutDate.toLocaleDateString();
-    
+
     return `${checkInStr} - ${checkOutStr} (${nights} nights)`;
   }
 
@@ -205,23 +224,23 @@ export class ViewBookingComponent {
   onBackClick() {
     this.location.back();
   }
-  
+
   onCalenderClick() {
     this.router.navigate(['/bookings']);
   }
-  
+
   onUserClick() {
     this.router.navigate(['/users']);
   }
-  
+
   onBookingClick() {
     this.router.navigate(['/bookings/view']);
   }
-  
+
   onRoomsClick() {
     this.router.navigate(['/rooms']);
   }
-  
+
   onLogoutClick() {
     this.authService.logout();
     this.router.navigate(['/auth']);

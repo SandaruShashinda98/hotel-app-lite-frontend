@@ -106,7 +106,7 @@ export class BookingCalendarComponent {
 
   ngOnInit(): void {
     const currentUser = this.authService.getCurrentUser();
-    if (currentUser.role_permission !== 'ADMIN') {
+    if (currentUser.role_permission === 'STAFF') {
       this.isAdmin.set(false);
     }
 

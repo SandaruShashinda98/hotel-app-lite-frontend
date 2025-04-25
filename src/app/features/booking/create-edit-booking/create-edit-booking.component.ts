@@ -58,6 +58,7 @@ export class CreateEditBookingComponent implements OnInit {
   bookingForm = this.fb.group({
     customer_name: ['', Validators.required],
     mobile_number: ['', Validators.required],
+    email: ['', Validators.required],
     clock_in_date: [new Date(), Validators.required],
     clock_in_time: [this.defaultCheckInTime, Validators.required],
     clock_out_date: [this.addDays(new Date(), 1), Validators.required],
@@ -153,6 +154,7 @@ export class CreateEditBookingComponent implements OnInit {
         this.bookingForm.patchValue({
           customer_name: booking.customer_name,
           mobile_number: booking.mobile_number,
+          email: booking.email,
           clock_in_date: clockInDate,
           clock_in_time: clockInTime,
           clock_out_date: clockOutDate,
@@ -248,6 +250,7 @@ export class CreateEditBookingComponent implements OnInit {
     const bookingData: IBooking = {
       customer_name: formValues.customer_name as string,
       mobile_number: formValues.mobile_number as string,
+      email: formValues.email as string,
       clock_in: clockIn,
       clock_out: clockOut,
       status: formValues.status as 'pending' | 'confirmed' | 'completed' | 'canceled',

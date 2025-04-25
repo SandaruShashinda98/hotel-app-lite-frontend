@@ -48,7 +48,11 @@ export class ViewRoomsComponent {
 
   rooms = signal<IRoom[]>([]);
   loading = signal<boolean>(false);
-  isAdmin = signal<boolean>(true);
+
+  isAdmin = signal<boolean>(false);
+  isStaff = signal<boolean>(false);
+  isManager = signal<boolean>(false);
+
   filterControl = new FormControl('');
   filterControlType = new FormControl('');
   totalItems = signal<number>(0);
@@ -77,11 +81,10 @@ export class ViewRoomsComponent {
   }
 
   ngOnInit() {
-
     const currentUser = this.authService.getCurrentUser();
-    if (currentUser.role_permission !== 'ADMIN') {
-      this.isAdmin.set(false);
-    }
+    if (currentUser.role_permission === 'ADMIN') this.isAdmin.set(true);
+    if (currentUser.role_permission === 'STAFF') this.isStaff.set(true);
+    if (currentUser.role_permission === 'MANAGER') this.isManager.set(true);
 
     this.route.queryParams.subscribe((params) => {
       const size = Number(params['size']) || 10;
@@ -95,7 +98,12 @@ export class ViewRoomsComponent {
     });
   }
 
-  loadRooms(filters: { size?: number; start?: number; searchKey?: string; roomType?: string }) {
+  loadRooms(filters: {
+    size?: number;
+    start?: number;
+    searchKey?: string;
+    roomType?: string;
+  }) {
     this.loading.set(true);
 
     const params = {
@@ -157,23 +165,23 @@ export class ViewRoomsComponent {
   onBackClick() {
     this.location.back();
   }
-  
+
   onCalenderClick() {
     this.router.navigate(['/bookings']);
   }
-  
+
   onUserClick() {
     this.router.navigate(['/users']);
   }
-  
+
   onBookingClick() {
     this.router.navigate(['/bookings/view']);
   }
-  
+
   onRoomsClick() {
     this.router.navigate(['/rooms']);
   }
-  
+
   onLogoutClick() {
     this.authService.logout();
     this.router.navigate(['/auth']);
