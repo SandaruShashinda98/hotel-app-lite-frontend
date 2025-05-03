@@ -60,6 +60,7 @@
     "form": {
       "customerName": "Customer Name",
       "email": "Email",
+      "booking_originate": "Booking Originate",
       "customerNameRequired": "Customer name is required",
       "mobileNumber": "Mobile Number",
       "mobileNumberRequired": "Mobile number is required",

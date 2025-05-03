@@ -62,6 +62,7 @@
       "mobileNumber": "Numéro Mobile",
       "mobileNumberRequired": "Le numéro mobile est requis",
       "clockIn": "Arrivée",
+      "booking_originate": "Origine de Réservation",
       "clockOut": "Départ",
       "checkedIn": "Enregistré",
       "checkedOut": "Libéré",

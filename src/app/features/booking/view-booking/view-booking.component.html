@@ -100,7 +100,6 @@
           <mat-option value="BOOKING_COM" class="py-2">Booking.com</mat-option>
           <mat-option value="AGODA" class="py-2">Agoda</mat-option>
           <mat-option value="AIRBNB" class="py-2">Airbnb</mat-option>
-          <mat-option value="TRIPADVISOR" class="py-2">Tripadvisor</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -197,6 +196,20 @@
           </th>
           <td mat-cell *matCellDef="let booking" class="px-4 py-3 border-t">
             {{ booking.email }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="booking_originate">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header
+            class="px-4 py-3 bg-gray-50 text-gray-700 font-semibold"
+          >
+            {{ "booking.form.booking_originate" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let booking" class="px-4 py-3 border-t">
+            {{ booking.booking_originate }}
           </td>
         </ng-container>
 

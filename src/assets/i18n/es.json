@@ -60,6 +60,7 @@
       "email": "Correo Electrónico",
       "customerNameRequired": "El nombre del cliente es obligatorio",
       "mobileNumber": "Número Móvil",
+      "booking_originate": "Origen de Reserva",
       "mobileNumberRequired": "El número móvil es obligatorio",
       "clockIn": "Entrada",
       "clockOut": "Salida",

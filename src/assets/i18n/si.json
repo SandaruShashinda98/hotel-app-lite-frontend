@@ -63,6 +63,7 @@
       "mobileNumberRequired": "ජංගම දුරකථන අංකය අවශ්‍ය වේ",
       "clockIn": "පැමිණීම",
       "clockOut": "පිටවීම",
+      "booking_originate": "වෙන්කිරීම් ප්‍රභවය",
       "checkedIn": "පැමිණ ඇත",
       "checkedOut": "පිටව ඇත",
       "checkedInAt": "පැමිණි වේලාව",

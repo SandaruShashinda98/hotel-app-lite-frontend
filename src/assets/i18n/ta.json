@@ -63,6 +63,7 @@
       "mobileNumberRequired": "கைபேசி எண் தேவை",
       "clockIn": "வருகை",
       "clockOut": "வெளியேற்றம்",
+      "booking_originate": "முன்பதிவு மூலம்",
       "checkedIn": "வருகை பதிவு செய்யப்பட்டது",
       "checkedOut": "வெளியேற்றம் பதிவு செய்யப்பட்டது",
       "checkedInAt": "வருகை பதிவு நேரம்",

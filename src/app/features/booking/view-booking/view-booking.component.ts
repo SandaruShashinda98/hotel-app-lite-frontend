@@ -68,6 +68,7 @@ export class ViewBookingComponent {
     'customer_name',
     'mobile_number',
     'email',
+    'booking_originate',
     'room_info',
     'clock_in',
     'clock_out',
@@ -134,6 +135,8 @@ export class ViewBookingComponent {
       source: filters.source || '',
       status: filters.status || '',
     };
+
+    console.log('Loading bookings with params:', params);
 
     this.bookingService.getBookings(params).subscribe({
       next: (res) => {
