@@ -32,18 +32,28 @@ export class BookingService {
     return this.http.patch<IBooking>(`${this.apiUrl}/${id}`, booking);
   }
 
+  updateChecking(id: number, booking: Partial<IBooking>): Observable<IBooking> {
+    return this.http.patch<IBooking>(`${this.apiUrl}/check/${id}`, booking);
+  }
+
   deleteBooking(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  getAvailableRooms(checkIn: Date, checkOut: Date): Observable<{ data: IRoom[]; count: number }> {
+  getAvailableRooms(
+    checkIn: Date,
+    checkOut: Date
+  ): Observable<{ data: IRoom[]; count: number }> {
     const params = {
       checkIn: checkIn.toISOString(),
       checkOut: checkOut.toISOString(),
     };
-    
-    return this.http.get<{ data: IRoom[]; count: number }>(`${this.apiUrl}/available-rooms`, { 
-      params 
-    });
+
+    return this.http.get<{ data: IRoom[]; count: number }>(
+      `${this.apiUrl}/available-rooms`,
+      {
+        params,
+      }
+    );
   }
 }

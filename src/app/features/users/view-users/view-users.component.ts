@@ -128,8 +128,10 @@ export class ViewUsersComponent {
     switch (status) {
       case 'ADMIN':
         return `${baseClasses} bg-green-100 text-green-800`;
-      case 'WORKER':
+      case 'STAFF':
         return `${baseClasses} bg-yellow-100 text-yellow-800`;
+      case 'MANAGER':
+        return `${baseClasses} bg-pink-100 text-pink-800`;
       default:
         return baseClasses;
     }

@@ -29,4 +29,9 @@ export interface IBooking {
   created_by?: string;
   changed_by?: string;
   last_modified_on?: Date;
+
+  is_checked_in?: boolean;
+  is_checked_out?: boolean;
+  checked_in_at?: Date;
+  checked_out_at?: Date;
 }

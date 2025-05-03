@@ -18,6 +18,7 @@ import { Location, CommonModule } from '@angular/common';
 import { LanguageSelectorComponent } from '../../../shared/components/language-selector/language-selector.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-view-booking',
@@ -36,6 +37,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     RouterModule,
     ReactiveFormsModule,
     TranslatePipe,
+    MatCheckboxModule,
     MatProgressSpinnerModule,
     LanguageSelectorComponent,
   ],
@@ -69,6 +71,8 @@ export class ViewBookingComponent {
     'room_info',
     'clock_in',
     'clock_out',
+    'is_checked_in',
+    'is_checked_out',
     'status',
     'actions',
   ];
@@ -218,6 +222,59 @@ export class ViewBookingComponent {
     const checkOutStr = checkOutDate.toLocaleDateString();
 
     return `${checkInStr} - ${checkOutStr} (${nights} nights)`;
+  }
+
+  updateCheckStatus(
+    bookingId: number,
+    isChecked: boolean,
+    field: 'is_checked_in' | 'is_checked_out'
+  ) {
+    // Create update object
+    const update: Partial<IBooking> = {
+      [field]: isChecked,
+    };
+
+    // Add timestamp if checked
+    if (isChecked) {
+      if (field === 'is_checked_in') {
+        update.checked_in_at = new Date();
+
+        // If status is 'pending', automatically change to 'confirmed'
+        const booking = this.bookings().find((b) => b._id === bookingId);
+        if (booking && booking.status === 'pending') {
+          update.status = 'confirmed';
+        }
+      } else if (field === 'is_checked_out') {
+        update.checked_out_at = new Date();
+
+        // If checked out, automatically change status to 'completed'
+        update.status = 'completed';
+      }
+    }
+
+    this.bookingService.updateChecking(bookingId, update as IBooking).subscribe({
+      next: () => {
+        // Refresh the data
+        const currentParams = this.route.snapshot.queryParams;
+        this.loadBookings(currentParams);
+
+        // Show success message
+        const action = field === 'is_checked_in' ? 'checked in' : 'checked out';
+        this.snackBar.open(`Booking successfully ${action}`, 'Close', {
+          duration: 3000,
+        });
+      },
+      error: (error) => {
+        console.error('Error updating booking:', error);
+        this.snackBar.open(
+          `Failed to update booking status: ${error.message}`,
+          'Close',
+          {
+            duration: 5000,
+          }
+        );
+      },
+    });
   }
 
   // Navigation methods

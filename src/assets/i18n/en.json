@@ -40,6 +40,7 @@
     },
     "list": {
       "customerName": "Customer Name",
+      "email": "Email",
       "date": "Date",
       "duration": "Duration",
       "status": "Status"
@@ -58,11 +59,17 @@
     },
     "form": {
       "customerName": "Customer Name",
+      "email": "Email",
       "customerNameRequired": "Customer name is required",
       "mobileNumber": "Mobile Number",
       "mobileNumberRequired": "Mobile number is required",
       "clockIn": "Check In",
       "clockOut": "Check Out",
+      "checkedIn": "Checked In",
+      "checkedOut": "Checked Out",
+      "checkedInAt": "Checked in at",
+      "checkedOutAt": "Checked out at",
+      "checkInOutStatus": "Check-in/Check-out Status",
       "date": "Date",
       "dateRequired": "Date is required",
       "time": "Time",
